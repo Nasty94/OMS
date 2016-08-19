@@ -1,4 +1,4 @@
-package com.h2;
+/*package com.h2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -88,4 +88,4 @@ public class H2Sample {
         System.out.println("Server started and connection is open.");
         System.out.println("URL: jdbc:h2:" + server.getURL() + "/mem:test");
     }
-}
+}*/
