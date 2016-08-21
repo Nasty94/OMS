@@ -1,9 +1,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gradle + Spring MVC</title>
+<title>Order Management System</title>
 
 <spring:url value="/resources/core/css/hello.css" var="coreCss" />
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
@@ -14,7 +16,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="#">Project Name</a>
+		<a class="navbar-brand" href="#">Order Management System</a>
 	</div>
   </div>
 </nav>
@@ -42,21 +44,37 @@
 
   <div class="row">
 	<div class="col-md-4">
-		<h2>Heading</h2>
+		<h2>Client</h2>
+		<p>ABC</p>
+		<p>
+			<a class="btn btn-default" href="#" role="button">View details</a>
+		</p>
+		
+		<table border="1">
+        <tr>
+            <th>Employee Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        <c:forEach items="${employees}" var="employee">
+            <tr>
+            
+                <td>${employee.id}</td>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
+            </tr>
+        </c:forEach>
+    </table>
+	</div>
+	<div class="col-md-4">
+		<h2>Product</h2>
 		<p>ABC</p>
 		<p>
 			<a class="btn btn-default" href="#" role="button">View details</a>
 		</p>
 	</div>
 	<div class="col-md-4">
-		<h2>Heading</h2>
-		<p>ABC</p>
-		<p>
-			<a class="btn btn-default" href="#" role="button">View details</a>
-		</p>
-	</div>
-	<div class="col-md-4">
-		<h2>Heading</h2>
+		<h2>Other</h2>
 		<p>ABC</p>
 		<p>
 			<a class="btn btn-default" href="#" role="button">View details</a>
@@ -67,7 +85,7 @@
 
   <hr>
   <footer>
-	<p>© Mkyong.com 2015</p>
+	<p>© Anastassia 2016</p>
   </footer>
 </div>
 

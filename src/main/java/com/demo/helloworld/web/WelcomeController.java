@@ -2,16 +2,23 @@ package com.demo.helloworld.web;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.helloworld.service.HelloWorldService;
+import com.demo.service.EmployeeManager;
+import com.demo.service.EmployeeManagerImpl;
+import com.demo.service.ProductManager;
 
 @Controller
 public class WelcomeController {
@@ -20,11 +27,12 @@ public class WelcomeController {
 	private final HelloWorldService helloWorldService;
 
 	@Autowired
+		
 	public WelcomeController(HelloWorldService helloWorldService) {
 		this.helloWorldService = helloWorldService;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Map<String, Object> model) {
 
 		logger.debug("index() is executed!");
@@ -34,7 +42,7 @@ public class WelcomeController {
 		
 		return "index";
 	}
-
+*/
 	@RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
 	public ModelAndView hello(@PathVariable("name") String name) {
 
@@ -49,5 +57,38 @@ public class WelcomeController {
 		return model;
 
 	}
+	
+	    @Resource(name="employeeManagerImpl")
+	    EmployeeManager manager;
+	 
+	    @RequestMapping(value = "/",method = RequestMethod.GET)
+	    public String getAllEmployees(Model model)
+	    
+	    
+	    {
+	    	
+	    logger.debug("index() is executed!");
+
+			model.addAttribute("title", helloWorldService.getTitle(""));
+			model.addAttribute("msg", helloWorldService.getDesc());
+	        model.addAttribute("employees", manager.getAllEmployees());
+	        return "index";
+	    }
+	    
+	    @Resource(name="productManagerImpl")
+	    ProductManager manager1;
+	 
+	    @RequestMapping(value = "/products",method = RequestMethod.GET)
+	    public String getAllProducts(Model model)
+	    
+	    
+	    {
+	    	
+	    logger.debug("index() is executed!");
+
+		
+	        model.addAttribute("products", manager1.getAllProducts());
+	        return "index";
+	    }
 
 }
