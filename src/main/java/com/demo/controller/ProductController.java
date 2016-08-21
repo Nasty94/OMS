@@ -15,7 +15,7 @@ public class ProductController
     @Autowired
     EmployeeManager manager;
  
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
     public String getAllEmployees(Model model)
     {
         model.addAttribute("products", manager.getAllEmployees());

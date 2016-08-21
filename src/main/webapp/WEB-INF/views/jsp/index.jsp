@@ -45,10 +45,7 @@
   <div class="row">
 	<div class="col-md-4">
 		<h2>Client</h2>
-		<p>ABC</p>
-		<p>
-			<a class="btn btn-default" href="#" role="button">View details</a>
-		</p>
+	
 		
 		<table border="1">
         <tr>
@@ -65,13 +62,36 @@
             </tr>
         </c:forEach>
     </table>
+    
+      <p>
+			<a class="btn btn-default" href="http://localhost:8080/oms/employee" role="button">View details</a>
+		</p>
 	</div>
+	
+	
 	<div class="col-md-4">
 		<h2>Product</h2>
-		<p>ABC</p>
-		<p>
-			<a class="btn btn-default" href="#" role="button">View details</a>
+		
+		<table border="1">
+        <tr>
+            <th>Employee Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        <c:forEach items="${products}" var="product">
+            <tr>
+            
+                <td>${product.id}</td>
+                <td>${product.firstName}</td>
+                <td>${product.lastName}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    
+    <p>
+			<a class="btn btn-default" href="http://localhost:8080/oms/product" role="button">View details</a>
 		</p>
+		
 	</div>
 	<div class="col-md-4">
 		<h2>Other</h2>

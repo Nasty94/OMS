@@ -32,7 +32,7 @@ public class WelcomeController {
 		this.helloWorldService = helloWorldService;
 	}
 
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Map<String, Object> model) {
 
 		logger.debug("index() is executed!");
@@ -42,7 +42,7 @@ public class WelcomeController {
 		
 		return "index";
 	}
-*/
+
 	@RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
 	public ModelAndView hello(@PathVariable("name") String name) {
 
@@ -61,7 +61,7 @@ public class WelcomeController {
 	    @Resource(name="employeeManagerImpl")
 	    EmployeeManager manager;
 	 
-	    @RequestMapping(value = "/",method = RequestMethod.GET)
+	    @RequestMapping(value = "/employee",method = RequestMethod.GET)
 	    public String getAllEmployees(Model model)
 	    
 	    
@@ -69,8 +69,6 @@ public class WelcomeController {
 	    	
 	    logger.debug("index() is executed!");
 
-			model.addAttribute("title", helloWorldService.getTitle(""));
-			model.addAttribute("msg", helloWorldService.getDesc());
 	        model.addAttribute("employees", manager.getAllEmployees());
 	        return "index";
 	    }
@@ -78,7 +76,7 @@ public class WelcomeController {
 	    @Resource(name="productManagerImpl")
 	    ProductManager manager1;
 	 
-	    @RequestMapping(value = "/products",method = RequestMethod.GET)
+	    @RequestMapping(value = "/product",method = RequestMethod.GET)
 	    public String getAllProducts(Model model)
 	    
 	    
