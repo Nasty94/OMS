@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import java.sql.SQLException;
 import java.util.List;
  
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class EmployeeManagerImpl implements EmployeeManager {
     @Autowired
     EmployeeDAO dao;
      
-    public List<EmployeeVO> getAllEmployees() 
+    public List<EmployeeVO> getAllEmployees() throws SQLException 
     {
         return dao.getAllEmployees();
     }

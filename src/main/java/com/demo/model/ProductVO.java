@@ -6,37 +6,58 @@ public class ProductVO implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	private String firstName;
-	private String lastName;
+	private Integer BarCode;
+	private String Name;
+	private String Price;
+	private String Description;
+	private String Date;
 
 	@Override
 	public String toString() {
-		return "EmployeeVO [id=" + id + ", firstName=" + firstName
-				+ ", lastName=" + lastName + "]";
+		return "EmployeeVO [BarCode=" + BarCode + ", Name=" + Name
+				+ ", Price=" + Price + ", Description=" + Description +
+				", Date=" + Date +"]";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getBarCode() {
+		return BarCode;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setBarCode(Integer barCode) {
+		BarCode = barCode;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return Name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		Name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getPrice() {
+		return Price;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPrice(String price) {
+		Price = price;
 	}
+
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
+	}
+
+	public String getDate() {
+		return Date;
+	}
+
+	public void setDate(String date) {
+		Date = date;
+	}
+
+
 }

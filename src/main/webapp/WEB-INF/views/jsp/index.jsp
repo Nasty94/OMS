@@ -49,16 +49,22 @@
 		
 		<table border="1">
         <tr>
-            <th>Employee Id</th>
+            <th>Employee Securitycode</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Phone</th>
+            <th>Country</th>
+            <th>Address</th>
         </tr>
         <c:forEach items="${employees}" var="employee">
             <tr>
             
-                <td>${employee.id}</td>
+                <td>${employee.securitycode}</td>
                 <td>${employee.firstName}</td>
                 <td>${employee.lastName}</td>
+                <td>${employee.phone}</td>
+                <td>${employee.country}</td>
+                <td>${employee.address}</td>
             </tr>
         </c:forEach>
     </table>
@@ -74,16 +80,20 @@
 		
 		<table border="1">
         <tr>
-            <th>Employee Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Barcode</th>
+            <th>Name</th>
+            <th>Price (EUR)</th>
+            <th>Description </th>
+            <th>Date</th>
         </tr>
         <c:forEach items="${products}" var="product">
             <tr>
             
-                <td>${product.id}</td>
-                <td>${product.firstName}</td>
-                <td>${product.lastName}</td>
+                <td>${product.BarCode}</td>
+                <td>${product.Name}</td>
+                <td>${product.Price}</td>
+                <td>${product.Description}</td>
+                <td>${product.Date}</td>
             </tr>
         </c:forEach>
     </table>

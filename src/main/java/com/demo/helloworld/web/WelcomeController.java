@@ -1,5 +1,6 @@
 package com.demo.helloworld.web;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -62,7 +63,7 @@ public class WelcomeController {
 	    EmployeeManager manager;
 	 
 	    @RequestMapping(value = "/employee",method = RequestMethod.GET)
-	    public String getAllEmployees(Model model)
+	    public String getAllEmployees(Model model) throws SQLException
 	    
 	    
 	    {
@@ -77,7 +78,7 @@ public class WelcomeController {
 	    ProductManager manager1;
 	 
 	    @RequestMapping(value = "/product",method = RequestMethod.GET)
-	    public String getAllProducts(Model model)
+	    public String getAllProducts(Model model) throws SQLException
 	    
 	    
 	    {
