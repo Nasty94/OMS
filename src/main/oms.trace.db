@@ -2935,3 +2935,751 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 32 more
+2016-08-23 20:20:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+ORDERNR int,
+CONVPRICE int,
+TRANDATE varchar(255),
+BARCODE int
+) [42001-192]
+2016-08-23 20:21:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+ORDERNR int,
+CONVPRICE int,
+TRANDATE varchar(255),
+BARCODE int
+) [42001-192]
+2016-08-23 20:22:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT
+)
+
+CREATE TABLE ORDER
+(
+ORDERNR INT,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT
+
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+ORDERNR int,
+CONVPRICE int,
+TRANDATE varchar(255),
+BARCODE int
+)
+
+CREATE TABLE Order
+(
+ORDERNR int,
+CONVPRICE int,
+TRANDATE varchar(255),
+BARCODE int
+
+) [42001-192]
+2016-08-23 20:24:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT
+
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+ORDERNR int,
+CONVPRICE int,
+TRANDATE varchar(255),
+BARCODE int
+
+) [42001-192]
+2016-08-23 20:24:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+ORDERNR int,
+CONVPRICE int,
+TRANDATE varchar(255),
+BARCODE int
+) [42001-192]
+2016-08-23 20:25:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT NOT NULL,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT,
+PRIMARY KEY (ORDERNR)
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+ORDERNR int NOT NULL,
+CONVPRICE int,
+TRANDATE varchar(255),
+BARCODE int,
+PRIMARY KEY (ORDERNR)
+) [42001-192]
+2016-08-23 20:26:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT NOT NULL,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT,
+PRIMARY KEY (ORDERNR)
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+Ordernr int NOT NULL,
+convprice int,
+trandate varchar(255),
+barcode int,
+PRIMARY KEY (ORDERNR)
+) [42001-192]
+2016-08-23 20:26:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+ORDERNR INT NOT NULL,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT,
+PRIMARY KEY (ORDERNR)
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+Ordernr int NOT NULL,
+convprice int,
+trandate varchar(255),
+barcode int,
+PRIMARY KEY (ORDERNR)
+) [42001-192]
+2016-08-23 20:27:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*](ORDERNR INT NOT NULL,CONVPRICE INT,TRANDATE VARCHAR(255),BARCODE INT,PRIMARY KEY (ORDERNR)) "; expected "identifier"; SQL statement:
+CREATE TABLE Order(Ordernr int NOT NULL,convprice int,trandate varchar(255),barcode int,PRIMARY KEY (ORDERNR)) [42001-192]
+2016-08-23 20:29:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDER[*]
+(
+'Ordernr' INT NOT NULL,
+'convprice' INT,
+'trandate' VARCHAR(255),
+'barcode' INT,
+PRIMARY KEY ('ORDERNR')
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Order
+(
+'Ordernr' int NOT NULL,
+'convprice' int,
+'trandate' varchar(255),
+'barcode' int,
+PRIMARY KEY ('ORDERNR')
+) [42001-192]
+2016-08-23 20:30:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE Order
+(
+""Ordernr"" int NOT NULL,
+""convprice"" int,
+""trandate"" varchar(255),
+""barcod""' int,
+PRIMARY KEY ('ORDERNR[*]')
+);"; SQL statement:
+CREATE TABLE Order
+(
+"Ordernr" int NOT NULL,
+"convprice" int,
+"trandate" varchar(255),
+"barcod"' int,
+PRIMARY KEY ('ORDERNR')
+); [42000-192]
+2016-08-23 20:31:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE Order
+(
+""Ordernr"" int NOT NULL,
+""convprice"" int,
+""trandate"" varchar(255),
+""barcod""' int,
+PRIMARY KEY ('ORDERNR[*]')
+);
+
+Alter table Orders rename to OrderOld;"; SQL statement:
+CREATE TABLE Order
+(
+"Ordernr" int NOT NULL,
+"convprice" int,
+"trandate" varchar(255),
+"barcod"' int,
+PRIMARY KEY ('ORDERNR')
+);
+
+Alter table Orders rename to OrderOld; [42000-192]
+2016-08-23 20:31:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE Orders
+(
+""Ordernr"" int NOT NULL,
+""convprice"" int,
+""trandate"" varchar(255),
+""barcod""' int,
+PRIMARY KEY ('ORDERNR[*]')
+);"; SQL statement:
+CREATE TABLE Orders
+(
+"Ordernr" int NOT NULL,
+"convprice" int,
+"trandate" varchar(255),
+"barcod"' int,
+PRIMARY KEY ('ORDERNR')
+); [42000-192]
+2016-08-23 20:32:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE ORDERS
+(
+ORDERNR INT NOT NULL,
+CONVPRICE INT,
+TRANDATE VARCHAR(255),
+BARCODE INT,
+PRIMARY KEY ('ORDERNR'[*])
+) "; expected "identifier"; SQL statement:
+CREATE TABLE Orders
+(
+Ordernr int NOT NULL,
+convprice int,
+trandate varchar(255),
+barcode int,
+PRIMARY KEY ('ORDERNR')
+) [42001-192]
+2016-08-23 20:35:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT A.ORVERNR, A.CONVPRICE, A.TRANDATE, A.BARCODE, B.NAME, B.PRICE, B.DESCRIPTION, B.DATEFROM ORDER A[*] INNER JOIN PRODUCT BON A.BARCODE = B.BARCODE "; expected "BY"; SQL statement:
+SELECT a.ORVERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, b.NAME, b.PRICE, b.DESCRIPTION, b.DATEFROM ORDER a INNER JOIN PRODUCT bON a.BARCODE = b.BARCODE [42001-192]
+2016-08-23 20:38:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT A.ORVERNR, A.CONVPRICE, A.TRANDATE, A.BARCODE, B.NAME, B.PRICE, B.DESCRIPTION, B.DATEFROM ORDER AS[*] A JOIN PRODUCT AS BON A.BARCODE = B.BARCODE "; expected "BY"; SQL statement:
+SELECT a.ORVERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, b.NAME, b.PRICE, b.DESCRIPTION, b.DATEFROM ORDER AS a JOIN PRODUCT AS bON a.BARCODE = b.BARCODE [42001-192]
+2016-08-23 20:39:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT A.ORVERNR, A.CONVPRICE, A.TRANDATE, A.BARCODE, B.NAME, B.PRICE, B.DESCRIPTION, B.DATEFROM ORDERS AS[*] A JOIN PRODUCT AS BON A.BARCODE = B.BARCODE "; SQL statement:
+SELECT a.ORVERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, b.NAME, b.PRICE, b.DESCRIPTION, b.DATEFROM ORDERS AS a JOIN PRODUCT AS bON a.BARCODE = b.BARCODE [42000-192]
+2016-08-23 20:41:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "A.ORVERNR" not found; SQL statement:
+SELECT a.ORVERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, b.NAME, b.PRICE, b.DESCRIPTION, b.DATE FROM ORDERS AS a JOIN PRODUCT AS b ON a.BARCODE = b.BARCODE [42122-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:852)
+	at org.h2.command.Parser.prepareCommand(Parser.java:259)
+	at org.h2.engine.Session.prepareLocal(Session.java:560)
+	at org.h2.engine.Session.prepareCommand(Session.java:501)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1202)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at com.demo.dao.OrderDAOImpl.getAllOrders(OrderDAOImpl.java:44)
+	at com.demo.service.OrderManagerImpl.getAllOrders(OrderManagerImpl.java:18)
+	at com.demo.helloworld.web.WelcomeController.getAllOrders(WelcomeController.java:181)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:857)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:926)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2016-08-23 23:29:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "B.PIRCE" not found; SQL statement:
+SELECT a.ORDERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, b.NAME, b.PRICE, b.DESCRIPTION, b.PIRCE, b.DATE FROM ORDERS AS a JOIN PRODUCT AS b ON a.BARCODE = b.BARCODE [42122-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Select.prepare(Select.java:852)
+	at org.h2.command.Parser.prepareCommand(Parser.java:259)
+	at org.h2.engine.Session.prepareLocal(Session.java:560)
+	at org.h2.engine.Session.prepareCommand(Session.java:501)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1202)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:73)
+	at com.demo.dao.OrderDAOImpl.getAllOrders(OrderDAOImpl.java:53)
+	at com.demo.service.OrderManagerImpl.getAllOrders(OrderManagerImpl.java:18)
+	at com.demo.helloworld.web.WelcomeController.getAllOrders(WelcomeController.java:182)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:857)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:926)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2016-08-23 23:35:19 jdbc[4]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:187)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:129)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.ProductDAOImpl.getAllProducts(ProductDAOImpl.java:48)
+	at com.demo.service.ProductManagerImpl.getAllProducts(ProductManagerImpl.java:18)
+	at com.demo.helloworld.web.WelcomeController.getAllProducts(WelcomeController.java:137)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:857)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:926)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 46 more
+2016-08-24 00:14:13 jdbc[8]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:187)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:129)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.ProductDAOImpl.updateProduct(ProductDAOImpl.java:135)
+	at com.demo.service.ProductUpdate.updateProduct(ProductUpdate.java:32)
+	at com.demo.helloworld.web.WelcomeController.updateProduct(WelcomeController.java:168)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:868)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:943)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:756)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:218)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 46 more
+2016-08-24 00:14:13 jdbc[8]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:187)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:129)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.ProductDAOImpl.updateProduct(ProductDAOImpl.java:135)
+	at com.demo.service.ProductUpdate.updateProduct(ProductUpdate.java:32)
+	at com.demo.helloworld.web.WelcomeController.updateProduct(WelcomeController.java:168)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:868)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:943)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:756)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:218)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 46 more
+2016-08-24 00:14:13 jdbc[8]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:187)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:129)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.ProductDAOImpl.updateProduct(ProductDAOImpl.java:135)
+	at com.demo.service.ProductUpdate.updateProduct(ProductUpdate.java:32)
+	at com.demo.helloworld.web.WelcomeController.updateProduct(WelcomeController.java:168)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:868)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:943)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:756)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:218)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 46 more
+2016-08-24 00:14:13 jdbc[8]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:187)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:129)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.ProductDAOImpl.updateProduct(ProductDAOImpl.java:135)
+	at com.demo.service.ProductUpdate.updateProduct(ProductUpdate.java:32)
+	at com.demo.helloworld.web.WelcomeController.updateProduct(WelcomeController.java:168)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:868)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:943)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:756)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:218)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 46 more
+2016-08-24 00:19:20 jdbc[10]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:187)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:129)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.EmployeeDAOImpl.getAllEmployees(EmployeeDAOImpl.java:41)
+	at com.demo.service.EmployeeManagerImpl.getAllEmployees(EmployeeManagerImpl.java:22)
+	at com.demo.helloworld.web.WelcomeController.getAllEmployees(WelcomeController.java:90)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:857)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:926)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 46 more
+2016-08-24 00:19:20 jdbc[10]: java.lang.Exception: Open Stack Trace
+	at org.h2.util.CloseWatcher.register(CloseWatcher.java:100)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:130)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.ProductDAOImpl.updateProduct(ProductDAOImpl.java:135)
+	at com.demo.service.ProductUpdate.updateProduct(ProductUpdate.java:32)
+	at com.demo.helloworld.web.WelcomeController.updateProduct(WelcomeController.java:168)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:868)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:943)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:756)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:218)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:187)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:129)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:102)
+	at org.h2.Driver.connect(Driver.java:72)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.demo.dao.EmployeeDAOImpl.getAllEmployees(EmployeeDAOImpl.java:41)
+	at com.demo.service.EmployeeManagerImpl.getAllEmployees(EmployeeManagerImpl.java:22)
+	at com.demo.helloworld.web.WelcomeController.getAllEmployees(WelcomeController.java:90)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:857)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:842)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:820)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:390)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:765)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:440)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:230)
+	at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:926)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	... 46 more

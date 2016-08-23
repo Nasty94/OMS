@@ -1,4 +1,5 @@
-package com.demo.dao;
+package com.demo.service;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -7,17 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.demo.model.OrderVO;
-import com.demo.model.ProductVO;
  
-public interface OrderDAO 
+public interface OrderCreater 
 {
-    public List<OrderVO> getAllOrders() throws SQLException;
-    
     public OrderVO insertOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException;
-
-	public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException;
-    
-
 }

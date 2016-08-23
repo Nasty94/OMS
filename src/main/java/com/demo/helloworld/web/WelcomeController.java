@@ -24,6 +24,8 @@ import com.demo.edit.DoEditEmployeeServlet;
 import com.demo.helloworld.service.HelloWorldService;
 import com.demo.service.EmployeeChange;
 import com.demo.service.EmployeeUpdate;
+import com.demo.service.OrderCreater;
+import com.demo.service.OrderGetImpl;
 import com.demo.service.OrderManager;
 import com.demo.service.ProductChange;
 import com.demo.service.EmployeeManager;
@@ -179,6 +181,36 @@ public class WelcomeController extends HttpServlet {
 	    logger.debug("order() is executed!");
 
 	        model.addAttribute("orders", manager2.getAllOrders());
+	        return "index";
+	    }
+	    
+	    @Resource(name="orderGetImpl")
+	    OrderGetImpl getO;
+	    
+	    @RequestMapping(value = "createOrder",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String getOrder (Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("changeP() is executed!");
+
+	        model.addAttribute("order", getO.getOrder(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="orderCreaterImpl")
+	    OrderCreater creater;
+	 
+	    @RequestMapping(value = "doCreateOrder",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String insertOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("orderInsert() is executed!");
+
+	        model.addAttribute("NewOrder", creater.insertOrder(request, response));
 	        return "index";
 	    }
 	    

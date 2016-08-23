@@ -14,6 +14,20 @@
 
 
 <script src="editEmployeeView.jsp"></script>
+<script>
+$(function(){
+    $('.create-order').on('click', function(e){
+        e.preventDefault();
+        $(this).next('.order-form').show();
+    });
+});
+</script>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
 
 </head>
 
@@ -48,15 +62,15 @@
 		<h2>Client</h2>
 	
 		
-		<table border="1">
+		<table style="width:100%" border="1">
         <tr>
-            <th>Employee Securitycode</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone</th>
-            <th>Country</th>
-            <th>Address</th>
-            <th>Edit</th>
+            <th width="70" height="100" >Employee Securitycode</th>
+            <th width="70" height="100" >First Name</th>
+            <th width="70" height="100" >Last Name</th>
+            <th width="70" height="100" >Phone</th>
+            <th width="70" height="100" >Country</th>
+            <th width="70" height="100" >Address</th>
+            <th width="70" height="100" >Edit</th>
             
         </tr>
         <c:forEach items="${employees}" var="employee">
@@ -112,6 +126,7 @@
                 <td><input type="text" name="address" value="${employee.address}" /></td>
              </tr>
              <tr>
+             <br><br>
                 <td colspan = "2">
                     <input type="submit" value="Change" />
                     <a href="${pageContext.request.contextPath}/employee">Cancel</a>
@@ -127,14 +142,14 @@
 	<div class="col-md-4">
 		<h2>Product</h2>
 		
-		<table border="1">
+		<table style="width:100%" border="1">
         <tr>
-            <th>Barcode</th>
-            <th>Name</th>
-            <th>Price (EUR)</th>
-            <th>Description </th>
-            <th>Date</th>
-            <th>Edit</th>
+            <th width="70" height="100" >Barcode</th>
+            <th width="70" height="100" >Name</th>
+            <th width="70" height="100" >Price (EUR)</th>
+            <th width="70" height="100" >Description </th>
+            <th width="70" height="100" >Date</th>
+            <th width="70" height="100" >Edit</th>
         </tr>
         <c:forEach items="${products}" var="product">
             <tr>
@@ -184,6 +199,7 @@
              </tr>
             
              <tr>
+             <br><br>
                 <td colspan = "2">
                     <input type="submit" value="Change" />
                     <a href="${pageContext.request.contextPath}/product">Cancel</a>
@@ -197,16 +213,16 @@
 	<div class="col-md-4">
 		<h2>Order</h2>
 		
-		<table border="1">
+		<table style="width:100%" border="1">
         <tr>
-            <th>Order nr</th>
-            <th>Converted price (Client currency)</th>
-            <th>Transaction date</th>
-            <th>Barcode</th>
-            <th>Name</th>
-            <th>Price (EUR)</th>
-            <th>Description </th>
-            <th>Date</th>
+            <th width="70" height="100" >Order nr</th>
+            <th width="70" height="100" >Converted price (Client currency)</th>
+            <th width="70" height="100" >Transaction date</th>
+            <th width="70" height="100" >Barcode</th>
+            <th width="70" height="100" >Name</th>
+            <th width="70" height="100" >Price (EUR)</th>
+            <th width="70" height="100" >Description </th>
+            <th width="70" height="100" >Date</th>
            
         </tr>
         <c:forEach items="${orders}" var="order">
@@ -225,14 +241,47 @@
             </tr>
         </c:forEach>
     </table>
-		
+		<br><br>
 		<p>
 			<a class="btn btn-default" href="http://localhost:8080/oms/order" role="button">View details</a>
 		</p>
 		
-		<div class="form">
-
-	</div>
+		<br><br>
+		
+		
+		
+		  <div class="form">	
+       <form id = "createOrder" method="POST" action="doCreateOrder">
+          
+          <table border="0">
+             <tr>
+                <td>Code</td>
+                <td><input type="text" name="ordernr" value="${order.ordernr}" /></td>
+             </tr>
+             <tr>
+                <td>Converted price</td>
+                <td><input type="text" name="convprice" value="${order.convprice}" /></td>
+             </tr>
+             <tr>
+                <td>Transaction date</td>
+                <td><input type="text" name="trandate" value="${order.trandate}" /></td>
+             </tr>
+             <tr>
+                <td>Product barcode</td>
+                <td><input type="text" name="barcode" value="${order.barcode}" /></td>
+             </tr>
+             
+             <tr>
+             <br><br>
+                <td colspan = "2">
+                    <input type="submit" value="Create" />
+                    <a href="${pageContext.request.contextPath}/order">Cancel</a>
+                </td>
+             </tr>
+          </table>
+       </form>
+  </div>
+		
 	</div>
   </div>
     <hr>
