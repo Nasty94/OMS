@@ -8,4 +8,5 @@ import com.demo.model.EmployeeVO;
 public interface EmployeeManager 
 {
     public List<EmployeeVO> getAllEmployees() throws SQLException;
+    
 }

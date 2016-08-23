@@ -11,6 +11,25 @@
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
+<script type="text/javascript">
+    var theButton = document.getElementById("Edit");
+
+    theButton.onclick = function() { 
+        document.getElementById("form").style.visibility="hidden";   
+    }
+    
+    $(function(){
+   $('.Container.row.col-md-4.Edit').click(function(){
+      $(this).hide();
+      $('.Container .form').show();
+      return false;
+   });
+});
+
+</script>
+
+<script src="editEmployeeView.jsp"></script>
+
 </head>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -33,10 +52,7 @@
 			Welcome Welcome!
 		</c:if>
         </p>
-        <p>
-		<a class="btn btn-primary btn-lg"
-                    href="#" role="button">Learn more</a>
-	</p>
+        
 	</div>
 </div>
 
@@ -55,6 +71,8 @@
             <th>Phone</th>
             <th>Country</th>
             <th>Address</th>
+            <th>Edit</th>
+            
         </tr>
         <c:forEach items="${employees}" var="employee">
             <tr>
@@ -65,11 +83,17 @@
                 <td>${employee.phone}</td>
                 <td>${employee.country}</td>
                 <td>${employee.address}</td>
+                <td>
+                <a class="Edit" href="http://localhost:8080/oms/doEditEmployee?securitycode=${employee.securitycode}">Edit</a>
+                
+             </td>
+             
+             
             </tr>
         </c:forEach>
     </table>
     
-      <p>
+        <p>
 			<a class="btn btn-default" href="http://localhost:8080/oms/employee" role="button">View details</a>
 		</p>
 	</div>
@@ -85,6 +109,7 @@
             <th>Price (EUR)</th>
             <th>Description </th>
             <th>Date</th>
+            <th>Edit</th>
         </tr>
         <c:forEach items="${products}" var="product">
             <tr>
@@ -94,11 +119,13 @@
                 <td>${product.Price}</td>
                 <td>${product.Description}</td>
                 <td>${product.Date}</td>
+               
+             
             </tr>
         </c:forEach>
     </table>
     
-    <p>
+        <p>
 			<a class="btn btn-default" href="http://localhost:8080/oms/product" role="button">View details</a>
 		</p>
 		
@@ -111,7 +138,44 @@
 		</p>
 	</div>
   </div>
-
+    <hr>
+  <div class="form">	
+       <form id = "changeEmployee" method="POST" action="doEditEmployee">
+          <input type="hidden" name="securitycode" value="${employee.securitycode}" />
+          <table border="0">
+             <tr>
+                <td>Code</td>
+                <td style="color:red;">${employee.securitycode}</td>
+             </tr>
+             <tr>
+                <td>First Name</td>
+                <td><input type="text" name="firstname" value="${employee.firstName}" /></td>
+             </tr>
+             <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lastname" value="${employee.lastName}" /></td>
+             </tr>
+             <tr>
+                <td>Phone</td>
+                <td><input type="text" name="phone" value="${employee.phone}" /></td>
+             </tr>
+             <tr>
+                <td>Country</td>
+                <td><input type="text" name="country" value="${employee.country}" /></td>
+             </tr>
+             <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" value="${employee.address}" /></td>
+             </tr>
+             <tr>
+                <td colspan = "2">
+                    <input type="submit" value="Change" />
+                    <a href="${pageContext.request.contextPath}/employee">Cancel</a>
+                </td>
+             </tr>
+          </table>
+       </form>
+  </div>
 
   <hr>
   <footer>

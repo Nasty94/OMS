@@ -2,12 +2,15 @@ package com.demo.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
  
 import org.springframework.stereotype.Repository;
@@ -17,6 +20,8 @@ import com.demo.model.ProductVO;
  
 @Repository
 public class ProductDAOImpl implements ProductDAO {
+	
+	
 	/*
 	 private static final String DBNAME = "oms";
 
@@ -30,8 +35,8 @@ public class ProductDAOImpl implements ProductDAO {
     {
     	 String query =
          		"SELECT * FROM PRODUCT";
-     
-     	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+     	 
  	     Statement s=connection.createStatement();
  	        
  	     s.execute("SELECT * FROM PRODUCT");
@@ -41,7 +46,7 @@ public class ProductDAOImpl implements ProductDAO {
  	     while(rs.next()) {
  	    	 int BarCode = rs.getInt("BarCODE");
  	    	 String Name = rs.getString("NAME");
- 	    	 String Price = rs.getString("PRICE");
+ 	    	 int Price = rs.getInt("PRICE");
  	    	 String Description = rs.getString("DESCRIPTION");
  	    	 
  	    	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");  
@@ -59,4 +64,21 @@ public class ProductDAOImpl implements ProductDAO {
 
          return products;
      }
+    
+    public static void updateProduct(Connection conn, ProductVO product) throws SQLException, ParseException {
+        String sql = "Update Product set Name =?, Price=?, Description=?, Date=? where BarCode=? ";
+        conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+        PreparedStatement pstm = conn.prepareStatement(sql);
+   
+        pstm.setString(1, product.getName());
+        pstm.setInt(2, product.getPrice());
+        pstm.setString(3, product.getDescription());
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        Date parsed = format.parse(product.getDate());
+        java.sql.Date SQLDate = new java.sql.Date(parsed.getTime());
+        
+        pstm.setDate(4, SQLDate);
+        pstm.executeUpdate();
+    }
 }

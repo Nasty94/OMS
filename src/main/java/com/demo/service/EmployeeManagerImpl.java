@@ -14,9 +14,13 @@ public class EmployeeManagerImpl implements EmployeeManager {
  
     @Autowired
     EmployeeDAO dao;
+    
+    int securitycode;
      
     public List<EmployeeVO> getAllEmployees() throws SQLException 
     {
         return dao.getAllEmployees();
     }
+    
+
 }

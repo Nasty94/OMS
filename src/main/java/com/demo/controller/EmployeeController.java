@@ -23,4 +23,6 @@ public class EmployeeController
         model.addAttribute("employees", manager.getAllEmployees());
         return "index";
     }
+    
+ 
 }

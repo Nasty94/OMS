@@ -8,7 +8,7 @@ public class ProductVO implements Serializable
 
 	private Integer BarCode;
 	private String Name;
-	private String Price;
+	private int Price;
 	private String Description;
 	private String Date;
 
@@ -35,11 +35,11 @@ public class ProductVO implements Serializable
 		Name = name;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return Price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		Price = price;
 	}
 
