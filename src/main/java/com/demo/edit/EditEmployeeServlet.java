@@ -54,7 +54,7 @@ public class EditEmployeeServlet extends HttpServlet {
         // The product does not exist to edit.
         // Redirect to productList page.
         if (errorString != null && employee == null) {
-            response.sendRedirect(request.getServletPath() + "/employees");
+            response.sendRedirect(request.getServletPath() + "/employee");
             return;
         }
  

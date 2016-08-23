@@ -18,6 +18,7 @@
     <bean id="employeeManagerImpl" class="com.demo.service.EmployeeManagerImpl"/>
     <bean id="productManagerImpl" class="com.demo.service.ProductManagerImpl"/>
     <bean id="employeeChange" class="com.demo.service.EmployeeChange"/>
+     <bean id="employeeUpdate" class="com.demo.service.EmployeeUpdate"/>
      
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/jsp/" />

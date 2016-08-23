@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.demo.edit.DoEditEmployeeServlet;
 import com.demo.helloworld.service.HelloWorldService;
 import com.demo.service.EmployeeChange;
+import com.demo.service.EmployeeUpdate;
 import com.demo.service.EmployeeManager;
 import com.demo.service.EmployeeManagerImpl;
 import com.demo.service.ProductManager;
@@ -80,7 +80,7 @@ public class WelcomeController extends HttpServlet {
 	    
 	    {
 	    	
-	    logger.debug("index() is executed!");
+	    logger.debug("client() is executed!");
 
 	        model.addAttribute("employees", manager.getAllEmployees());
 	        return "index";
@@ -89,15 +89,30 @@ public class WelcomeController extends HttpServlet {
 	    @Resource(name="employeeChange")
 	    EmployeeChange change;
 	    
-	    @RequestMapping(value = "/doEditEmployee",method = {RequestMethod.POST, RequestMethod.GET})
+	    @RequestMapping(value = "editEmployee",method = {RequestMethod.POST, RequestMethod.GET})
 	    public String getEmployee(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
 	    
 	    
 	    {
 	    	
-	    logger.debug("index() is executed!");
+	    logger.debug("change() is executed!");
 
 	        model.addAttribute("employee", change.getEmployee(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="employeeUpdate")
+	    EmployeeUpdate update;
+	    
+	    @RequestMapping(value = "doEditEmployee",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String updateEmployee(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("update() is executed!");
+
+	        model.addAttribute("NewEmployee", update.updateEmployee(request, response));
 	        return "index";
 	    }
 	 
@@ -112,7 +127,7 @@ public class WelcomeController extends HttpServlet {
 	    
 	    {
 	    	
-	    logger.debug("index() is executed!");
+	    logger.debug("product() is executed!");
 
 		
 	        model.addAttribute("products", manager1.getAllProducts());

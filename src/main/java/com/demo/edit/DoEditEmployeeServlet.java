@@ -71,7 +71,7 @@ public class DoEditEmployeeServlet extends HttpServlet {
        // If everything nice.
        // Redirect to the product listing page.            
        else {
-           response.sendRedirect(request.getContextPath() + "/employees");
+           response.sendRedirect(request.getContextPath() + "/employee");
        }
  
    }

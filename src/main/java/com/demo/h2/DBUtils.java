@@ -87,13 +87,14 @@ public class DBUtils {
       ResultSet rs = pstm.executeQuery();
  
       while (rs.next()) {
-          String FirstName = rs.getString("firstname");
-          String LastName = rs.getString("lastname");
+    	  int SecurityCode = rs.getInt("securitycode");
+          String FirstName = rs.getString("firstName");
+          String LastName = rs.getString("lastName");
           int Phone = rs.getInt("phone");
           String Country = rs.getString("country");
           String Address = rs.getString("address");
 	      EmployeeVO vo1 = new EmployeeVO();
-	         vo1.setSecuritycode(securitycode);
+	         vo1.setSecuritycode(SecurityCode);
 	         vo1.setFirstName(FirstName);
 	         vo1.setLastName(LastName);
 	         vo1.setPhone(Phone);
@@ -117,19 +118,22 @@ public class DBUtils {
       java.sql.Date SQLDate = new java.sql.Date(parsed.getTime());
       
       pstm.setDate(4, SQLDate);
+      pstm.setInt(5, product.getBarCode());
       pstm.executeUpdate();
   }
   
   public static void updateEmployee(Connection conn, EmployeeVO employee) throws SQLException, ParseException {
-      String sql = "Update Product set FirstName =?, LastName=?, Phone=?, Country=?, Address=?where SecurityCode=? ";
+      String sql = "Update Client set FirstName =?, LastName=?, Phone=?, Country=?, Address=? where SecurityCode=? ";
  
       PreparedStatement pstm = conn.prepareStatement(sql);
- 
+      
+      
       pstm.setString(1, employee.getFirstName());
       pstm.setString(2, employee.getLastName());
       pstm.setInt(3, employee.getPhone());
       pstm.setString(4, employee.getCountry());
       pstm.setString(5, employee.getAddress());
+      pstm.setInt(6, employee.getSecuritycode());
       pstm.executeUpdate();
   }
  

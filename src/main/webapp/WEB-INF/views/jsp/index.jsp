@@ -84,8 +84,8 @@
                 <td>${employee.country}</td>
                 <td>${employee.address}</td>
                 <td>
-                <a class="Edit" href="http://localhost:8080/oms/doEditEmployee?securitycode=${employee.securitycode}">Edit</a>
-                
+                <!--<a class="Edit" href="http://localhost:8080/oms/doEditEmployee?securitycode=${employee.securitycode}">Edit</a>-->
+                <a class="Edit" href="http://localhost:8080/oms/editEmployee?securitycode=${employee.securitycode}">Edit</a>
              </td>
              
              
