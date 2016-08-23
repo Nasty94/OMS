@@ -142,7 +142,7 @@ public class DBUtils {
   }
  
  public static void insertOrder(Connection conn, OrderVO order) throws SQLException {
-      String sql = "Insert into Orders(ordernr, convprice, trandate, barcode) values (?,?,?,?)";
+      String sql = "Insert into Orders(ordernr, convprice, trandate, barcode, client) values (?,?,?,?,?)";
  
       PreparedStatement pstm = conn.prepareStatement(sql);
  
@@ -150,6 +150,7 @@ public class DBUtils {
       pstm.setInt(2, order.getConvprice());
       pstm.setString(3, order.getTrandate());
       pstm.setInt(4, order.getBarcode());
+      pstm.setInt(5, order.getClient());
  
       pstm.executeUpdate();
   }

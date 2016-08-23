@@ -3,6 +3,7 @@ package com.demo.dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,8 +22,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.demo.h2.DBUtils;
+import com.demo.model.CountryVO;
+import com.demo.model.EmployeeVO;
 import com.demo.model.OrderVO;
 import com.demo.model.ProductVO;
+import com.demo.rates.ExchangeRate;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -36,11 +40,94 @@ public class OrderDAOImpl implements OrderDAO {
 	 //  private static final String DB_CONNECTION = //"jdbc:h2:mem~/Documents/GitHub/OMS/src/main/oms";
 	    private static final String DB_USER = "sa";
 	    private static final String DB_PASSWORD = "sa";*/
+	
+	private double pickRate(String Currency) {
+		 ExchangeRate exchange = new ExchangeRate();
+		 
+		 if (Currency=="USD") {
+    	  double rateUsd = exchange.getEuroUsdRate();
+    	  return rateUsd;
+		 } else if (Currency=="UK") {
+    	  double rateUk = exchange.getEuroUkRate();
+    	  return rateUk;
+		 }else if (Currency=="EUR") {
+    	  double rateEur = exchange.getEuroEurRate();
+    	  return rateEur;
+		 }else if (Currency=="RUB") {
+    	  double rateRub = exchange.getEuroRubRate();
+    	  return rateRub;
+		 }
+		 
+    	  double rateJpy = exchange.getEuroJpyRate();
+    	  return rateJpy;
+		  
+	}
+	
+	 
+	 private List<CountryVO> getAllCountries() throws SQLException
+	 
+	 {
+		 
+		 logger.debug("getAllCountries() is executed!");
+	        String query =
+	        		"SELECT * FROM COUNTRY";
+	    
+	    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+		     Statement s=connection.createStatement();
+		        
+		     //s.execute("SELECT * FROM CLIENT");
+		     ResultSet rs = s.executeQuery(query);
+		     List<CountryVO> countries = new ArrayList<CountryVO>();
+		     
+		     while(rs.next()) {
+		    	
+		    	 String name = rs.getString("NAME");
+		    	 String currency = rs.getString("CURRENCY");
+		    			    	 
+		    	 CountryVO vo1 = new CountryVO();
+		       
+		         vo1.setName(name);
+		         vo1.setCurrency(currency);
+		       
+		         countries.add(vo1);
+		     }
+	    	
+
+	         
+	        return countries;
+		 
+	 }
+	 
+	 private EmployeeVO findEmployee(int securitycode) throws SQLException {
+	      String sql = "Select a.SecurityCode, a.FirstName, a.LastName, a.Phone, a.Country, a.Address from Client a where a.SecurityCode=" +securitycode;
+	      Connection conn= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+	      PreparedStatement pstm = conn.prepareStatement(sql);
+	      	 
+	      ResultSet rs = pstm.executeQuery();
+	 
+	      while (rs.next()) {
+	    	  int SecurityCode = rs.getInt("securitycode");
+	          String FirstName = rs.getString("firstName");
+	          String LastName = rs.getString("lastName");
+	          int Phone = rs.getInt("phone");
+	          String Country = rs.getString("country");
+	          String Address = rs.getString("address");
+		      EmployeeVO vo1 = new EmployeeVO();
+		         vo1.setSecuritycode(SecurityCode);
+		         vo1.setFirstName(FirstName);
+		         vo1.setLastName(LastName);
+		         vo1.setPhone(Phone);
+		         vo1.setCountry(Country);
+		         vo1.setAddress(Address);
+	          return vo1;
+	      }
+	      return null;
+	 }
  
     public List<OrderVO> getAllOrders() throws SQLException 
     {
     	String query =
-         		"SELECT a.ORDERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, "
+         		"SELECT a.ORDERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, a.CLIENT, "
          		+ "b.NAME, b.PRICE, b.DESCRIPTION,  b.DATE "
          		+ "FROM ORDERS AS a JOIN PRODUCT AS b "
          		+ "ON a.BARCODE = b.BARCODE";
@@ -57,22 +144,24 @@ public class OrderDAOImpl implements OrderDAO {
  	     
  	     while(rs.next()) {
  	    	 int ordernr = rs.getInt("ORDERNR");
- 	    	 int convprice = rs.getInt("CONVPRICE");
+ 	    	 int eurprice = rs.getInt("PRICE");
  	    	 String trandate = rs.getString("TRANDATE");
  	    	 int barcode = rs.getInt("BARCODE");
+ 	    	 int client = rs.getInt("CLIENT");
  	    	 String name = rs.getString("NAME");
- 	    	 int price = rs.getInt("PRICE");
+ 	    	 int convprice = rs.getInt("CONVPRICE");
  	    	 String description = rs.getString("DESCRIPTION");
  	    	 String date = rs.getString("DATE");
 
  	    	 
  	    	 OrderVO vo1 = new OrderVO();
  	         vo1.setOrdernr(ordernr);
- 	         vo1.setConvprice(convprice);
+ 	         vo1.setPrice(eurprice);
  	         vo1.setTrandate(trandate);
  	         vo1.setBarcode(barcode);
+ 	         vo1.setClient(client);
  	         vo1.setName(name);
- 	         vo1.setPrice(price);
+ 	         vo1.setConvprice(convprice);
  	         vo1.setDescription(description);
  	         vo1.setDate(date);
  	         orders.add(vo1);
@@ -127,17 +216,34 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
      			logger.debug("InsertOrder Connection Exception() is executed!" + e1.getMessage());
      			e1.printStackTrace();
      		}
+     		
+     	 
     	
     	  int ordernr = Integer.parseInt((String) request.getParameter("ordernr"));
-          int convprice = Integer.parseInt((String) request.getParameter("convprice"));
+          int eurprice = Integer.parseInt((String) request.getParameter("price"));
           String trandate = (String) request.getParameter("trandate");
           int barcode = Integer.parseInt((String)request.getParameter("barcode"));
+          int client = Integer.parseInt((String) request.getParameter("client"));
+          String currency = null;
+          
+          List<CountryVO> countries = getAllCountries();
+          for (CountryVO v: countries){
+        	  if (v.getName()== findEmployee(client).getCountry()) {
+        		  currency = v.getCurrency();
+        	  }
+          }
+          
+          double rate = pickRate(currency);
           OrderVO vo1 = new OrderVO();
           vo1.setOrdernr(ordernr);
-          vo1.setConvprice(convprice);
+          
+          double convert = eurprice * rate;
+          int converted = (int) convert;
+          
+          vo1.setConvprice(converted);
           vo1.setTrandate(trandate);
           vo1.setBarcode(barcode);
-    
+          vo1.setClient(client);
           String errorString = null;
     
          

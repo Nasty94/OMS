@@ -19,7 +19,7 @@ import java.text.ParseException;
 import org.springframework.stereotype.Repository;
 
 import com.demo.h2.DBUtils;
-
+import com.demo.model.CountryVO;
 import com.demo.model.EmployeeVO;
  
 @Repository
@@ -30,6 +30,40 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
 	 public EmployeeDAOImpl() {
 	        super();
 	    }
+	 
+	 private List<CountryVO> getAllCountries() throws SQLException
+	 
+	 {
+		 
+		 logger.debug("getAllCountries() is executed!");
+	        String query =
+	        		"SELECT * FROM COUNTRY";
+	    
+	    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+		     Statement s=connection.createStatement();
+		        
+		     //s.execute("SELECT * FROM CLIENT");
+		     ResultSet rs = s.executeQuery(query);
+		     List<CountryVO> countries = new ArrayList<CountryVO>();
+		     
+		     while(rs.next()) {
+		    	
+		    	 String name = rs.getString("NAME");
+		    	 String currency = rs.getString("CURRENCY");
+		    			    	 
+		    	 CountryVO vo1 = new CountryVO();
+		       
+		         vo1.setName(name);
+		         vo1.setCurrency(currency);
+		       
+		         countries.add(vo1);
+		     }
+	    	
+
+	         
+	        return countries;
+		 
+	 }
 	 
     public List<EmployeeVO> getAllEmployees() throws SQLException 
    
@@ -146,6 +180,10 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
         vo1.setAddress(Address);
   
         String errorString = null;
+        
+        List<CountryVO> countries = getAllCountries();
+        
+        if(countries.contains(vo1.getCountry())) {
   
         try {
             DBUtils.updateEmployee(conn, vo1);
@@ -158,6 +196,7 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
         	logger.debug("updateEmployee() ParseException is executed! " + e.getMessage());
  		 return null;
  	}
+        }
   
         // Store infomation to request attribute, before forward to views.
         request.setAttribute("errorString", errorString);

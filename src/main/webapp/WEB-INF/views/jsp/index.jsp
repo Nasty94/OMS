@@ -216,11 +216,12 @@ table, th, td {
 		<table style="width:100%" border="1">
         <tr>
             <th width="70" height="100" >Order nr</th>
-            <th width="70" height="100" >Converted price (Client currency)</th>
+            <th width="70" height="100" >EUR price </th>
             <th width="70" height="100" >Transaction date</th>
             <th width="70" height="100" >Barcode</th>
+            <th width="70" height="100" >Client ID</th>
             <th width="70" height="100" >Name</th>
-            <th width="70" height="100" >Price (EUR)</th>
+            <th width="70" height="100" >Converted price (Client currency)</th>
             <th width="70" height="100" >Description </th>
             <th width="70" height="100" >Date</th>
            
@@ -229,11 +230,12 @@ table, th, td {
             <tr>
             
                 <td>${order.ordernr}</td>
-                <td>${order.convprice}</td>
+                <td>${order.price}</td>
                 <td>${order.trandate}</td>
                 <td>${order.barcode}</td>
+                <td>${order.client}</td>
                 <td>${order.name}</td>
-                <td>${order.price}</td>
+                <td>${order.convprice}</td>
                 <td>${order.description}</td>
                 <td>${order.date}</td>
                
@@ -259,8 +261,8 @@ table, th, td {
                 <td><input type="text" name="ordernr" value="${order.ordernr}" /></td>
              </tr>
              <tr>
-                <td>Converted price</td>
-                <td><input type="text" name="convprice" value="${order.convprice}" /></td>
+                <td>Eur price</td>
+                <td><input type="text" name="price" value="${order.price}" /></td>
              </tr>
              <tr>
                 <td>Transaction date</td>
@@ -269,6 +271,10 @@ table, th, td {
              <tr>
                 <td>Product barcode</td>
                 <td><input type="text" name="barcode" value="${order.barcode}" /></td>
+             </tr>
+             <tr>
+                <td>Client ID</td>
+                <td><input type="text" name="client" value="${order.client}" /></td>
              </tr>
              
              <tr>

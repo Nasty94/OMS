@@ -10,6 +10,7 @@ public class OrderVO implements Serializable
 	private Integer convprice;
 	private String trandate;
 	private Integer barcode;
+	private Integer client;
 	private String name;
 	private Integer price;
 	private String description;
@@ -18,7 +19,7 @@ public class OrderVO implements Serializable
 	@Override
 	public String toString() {
 		return "ProductVO [ Order nr=" + ordernr + ", Converted price=" + convprice + ","
-				+ ", Transaction date=" + trandate + ", BarCode=" + barcode + ", Name=" + name
+				+ ", Transaction date=" + trandate + ", BarCode=" + barcode + ", Client=" + client + ", Name=" + name
 				+ ", Price=" + price + ", Description=" + description +
 				", Date=" + date +"]";
 	}
@@ -70,6 +71,13 @@ public class OrderVO implements Serializable
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public Integer getClient() {
+		return client;
+	}
+	public void setClient(int client) {
+		this.client = client;
 	}
 	
 
