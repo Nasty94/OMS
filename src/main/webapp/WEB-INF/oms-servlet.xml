@@ -17,8 +17,11 @@
     
     <bean id="employeeManagerImpl" class="com.demo.service.EmployeeManagerImpl"/>
     <bean id="productManagerImpl" class="com.demo.service.ProductManagerImpl"/>
+     <bean id="orderManagerImpl" class="com.demo.service.OrderManagerImpl"/>
     <bean id="employeeChange" class="com.demo.service.EmployeeChange"/>
      <bean id="employeeUpdate" class="com.demo.service.EmployeeUpdate"/>
+      <bean id="productChange" class="com.demo.service.ProductChange"/>
+     <bean id="productUpdate" class="com.demo.service.ProductUpdate"/>
      
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/jsp/" />

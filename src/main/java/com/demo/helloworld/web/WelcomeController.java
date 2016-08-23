@@ -24,9 +24,12 @@ import com.demo.edit.DoEditEmployeeServlet;
 import com.demo.helloworld.service.HelloWorldService;
 import com.demo.service.EmployeeChange;
 import com.demo.service.EmployeeUpdate;
+import com.demo.service.OrderManager;
+import com.demo.service.ProductChange;
 import com.demo.service.EmployeeManager;
 import com.demo.service.EmployeeManagerImpl;
 import com.demo.service.ProductManager;
+import com.demo.service.ProductUpdate;
 import com.demo.edit.EditEmployeeServlet;
 
 @Controller
@@ -133,6 +136,53 @@ public class WelcomeController extends HttpServlet {
 	        model.addAttribute("products", manager1.getAllProducts());
 	        return "index";
 	    }
+	    
+	    @Resource(name="productChange")
+	    ProductChange changeP;
+	    
+	    @RequestMapping(value = "editProduct",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String getProduct (Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("changeP() is executed!");
+
+	        model.addAttribute("product", changeP.getProduct(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="productUpdate")
+	    ProductUpdate updateP;
+	    
+	    @RequestMapping(value = "doEditProduct",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String updateProduct(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("updateP() is executed!");
+
+	        model.addAttribute("NewProduct", updateP.updateProduct(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="orderManagerImpl")
+	    OrderManager manager2;
+	 
+	    @RequestMapping(value = "/order",method = RequestMethod.GET)
+	    public String getAllOrders(Model model) throws SQLException
+	    
+	    
+	    {
+	    	
+	    logger.debug("order() is executed!");
+
+	        model.addAttribute("orders", manager2.getAllOrders());
+	        return "index";
+	    }
+	    
+	 
 	    
 
 }

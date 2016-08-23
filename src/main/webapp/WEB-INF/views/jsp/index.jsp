@@ -11,22 +11,7 @@
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
-<script type="text/javascript">
-    var theButton = document.getElementById("Edit");
 
-    theButton.onclick = function() { 
-        document.getElementById("form").style.visibility="hidden";   
-    }
-    
-    $(function(){
-   $('.Container.row.col-md-4.Edit').click(function(){
-      $(this).hide();
-      $('.Container .form').show();
-      return false;
-   });
-});
-
-</script>
 
 <script src="editEmployeeView.jsp"></script>
 
@@ -84,7 +69,7 @@
                 <td>${employee.country}</td>
                 <td>${employee.address}</td>
                 <td>
-                <!--<a class="Edit" href="http://localhost:8080/oms/doEditEmployee?securitycode=${employee.securitycode}">Edit</a>-->
+             
                 <a class="Edit" href="http://localhost:8080/oms/editEmployee?securitycode=${employee.securitycode}">Edit</a>
              </td>
              
@@ -92,54 +77,13 @@
             </tr>
         </c:forEach>
     </table>
-    
+    <br><br>
         <p>
 			<a class="btn btn-default" href="http://localhost:8080/oms/employee" role="button">View details</a>
 		</p>
-	</div>
-	
-	
-	<div class="col-md-4">
-		<h2>Product</h2>
+		<br><br>
 		
-		<table border="1">
-        <tr>
-            <th>Barcode</th>
-            <th>Name</th>
-            <th>Price (EUR)</th>
-            <th>Description </th>
-            <th>Date</th>
-            <th>Edit</th>
-        </tr>
-        <c:forEach items="${products}" var="product">
-            <tr>
-            
-                <td>${product.BarCode}</td>
-                <td>${product.Name}</td>
-                <td>${product.Price}</td>
-                <td>${product.Description}</td>
-                <td>${product.Date}</td>
-               
-             
-            </tr>
-        </c:forEach>
-    </table>
-    
-        <p>
-			<a class="btn btn-default" href="http://localhost:8080/oms/product" role="button">View details</a>
-		</p>
-		
-	</div>
-	<div class="col-md-4">
-		<h2>Other</h2>
-		<p>ABC</p>
-		<p>
-			<a class="btn btn-default" href="#" role="button">View details</a>
-		</p>
-	</div>
-  </div>
-    <hr>
-  <div class="form">	
+		  <div class="form">	
        <form id = "changeEmployee" method="POST" action="doEditEmployee">
           <input type="hidden" name="securitycode" value="${employee.securitycode}" />
           <table border="0">
@@ -176,8 +120,127 @@
           </table>
        </form>
   </div>
+		
+	</div>
+	
+	
+	<div class="col-md-4">
+		<h2>Product</h2>
+		
+		<table border="1">
+        <tr>
+            <th>Barcode</th>
+            <th>Name</th>
+            <th>Price (EUR)</th>
+            <th>Description </th>
+            <th>Date</th>
+            <th>Edit</th>
+        </tr>
+        <c:forEach items="${products}" var="product">
+            <tr>
+            
+                <td>${product.barcode}</td>
+                <td>${product.name}</td>
+                <td>${product.price}</td>
+                <td>${product.description}</td>
+                <td>${product.date}</td>
+                <td>
+                
+                <a class="Edit" href="http://localhost:8080/oms/editProduct?barcode=${product.barcode}">Edit</a>
+             </td>
+             
+            </tr>
+        </c:forEach>
+    </table>
+    <br><br>
+        <p>
+			<a class="btn btn-default" href="http://localhost:8080/oms/product" role="button">View details</a>
+		</p>
+		
+		<br><br>
+  <div class="form">	
+       <form id = "changeProduct" method="POST" action="doEditProduct">
+          <input type="hidden" name="barcode" value="${product.barcode}" />
+          <table border="0">
+             <tr>
+                <td>Code</td>
+                <td style="color:red;">${product.barcode}</td>
+             </tr>
+             <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" value="${product.name}" /></td>
+             </tr>
+             <tr>
+                <td>Price</td>
+                <td><input type="text" name="price" value="${product.price}" /></td>
+             </tr>
+             <tr>
+                <td>Description</td>
+                <td><input type="text" name="description" value="${product.description}" /></td>
+             </tr>
+             <tr>
+                <td>Date</td>
+                <td><input type="text" name="date" value="${product.date}" /></td>
+             </tr>
+            
+             <tr>
+                <td colspan = "2">
+                    <input type="submit" value="Change" />
+                    <a href="${pageContext.request.contextPath}/product">Cancel</a>
+                </td>
+             </tr>
+          </table>
+       </form>
+  </div>
+		
+	</div>
+	<div class="col-md-4">
+		<h2>Order</h2>
+		
+		<table border="1">
+        <tr>
+            <th>Order nr</th>
+            <th>Converted price (Client currency)</th>
+            <th>Transaction date</th>
+            <th>Barcode</th>
+            <th>Name</th>
+            <th>Price (EUR)</th>
+            <th>Description </th>
+            <th>Date</th>
+           
+        </tr>
+        <c:forEach items="${orders}" var="order">
+            <tr>
+            
+                <td>${order.ordernr}</td>
+                <td>${order.convprice}</td>
+                <td>${order.trandate}</td>
+                <td>${order.barcode}</td>
+                <td>${order.name}</td>
+                <td>${order.price}</td>
+                <td>${order.description}</td>
+                <td>${order.date}</td>
+               
+             
+            </tr>
+        </c:forEach>
+    </table>
+		
+		<p>
+			<a class="btn btn-default" href="http://localhost:8080/oms/order" role="button">View details</a>
+		</p>
+		
+		<div class="form">
 
-  <hr>
+	</div>
+	</div>
+  </div>
+    <hr>
+    
+
+    <hr>
+
+  
   <footer>
 	<p>© Anastassia 2016</p>
   </footer>

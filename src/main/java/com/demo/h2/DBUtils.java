@@ -31,17 +31,18 @@ public class DBUtils {
  	     List<ProductVO> products = new ArrayList<ProductVO>();
  	     
  	     while(rs.next()) {
- 	    	 int BarCode = rs.getInt("BarCODE");
+ 	    	 int BarCode = rs.getInt("BARCODE");
  	    	 String Name = rs.getString("NAME");
  	    	 int Price = rs.getInt("PRICE");
  	    	 String Description = rs.getString("DESCRIPTION");
  	    	 
- 	    	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");  
- 	    	String textDate = df.format(rs.getString("DATE"));  
+ 	    	//DateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
+ 	    	//String textDate = df.format(rs.getString("DATE"));  
  	    	
- 	    	 
+ 	    	String textDate = rs.getString("DATE");
+ 	    	
  	    	 ProductVO vo1 = new ProductVO();
- 	         vo1.setBarCode(BarCode);
+ 	         vo1.setBarcode(BarCode);
  	         vo1.setName(Name);
  	         vo1.setPrice(Price);
  	         vo1.setDescription(Description);
@@ -54,7 +55,7 @@ public class DBUtils {
     
  
   public static ProductVO findProduct(Connection conn, int BarCode) throws SQLException {
-      String sql = "Select a.Code, a.Name, a.Price, a.Description from Product a where a.Code=?";
+      String sql = "Select a.Barcode, a.Name, a.Price, a.Description, a.Date from Product a where a.Barcode=?";
  
       PreparedStatement pstm = conn.prepareStatement(sql);
       pstm.setInt(1, BarCode);
@@ -62,13 +63,16 @@ public class DBUtils {
       ResultSet rs = pstm.executeQuery();
  
       while (rs.next()) {
+    	  int Barcode = rs.getInt("Barcode");
           String Name = rs.getString("Name");
           int Price = rs.getInt("Price");
           String Description = rs.getString("Description");
-          DateFormat df = new SimpleDateFormat("dd/MM/yyyy");  
-	      String textDate = df.format(rs.getString("DATE"));
+         // DateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
+	     // String textDate = df.format(rs.getString("DATE"));
+          String textDate = rs.getString("Date");
+          
 	      ProductVO vo1 = new ProductVO();
-	         vo1.setBarCode(BarCode);
+	         vo1.setBarcode(Barcode);
 	         vo1.setName(Name);
 	         vo1.setPrice(Price);
 	         vo1.setDescription(Description);
@@ -113,12 +117,12 @@ public class DBUtils {
       pstm.setString(1, product.getName());
       pstm.setInt(2, product.getPrice());
       pstm.setString(3, product.getDescription());
-      SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
       Date parsed = format.parse(product.getDate());
       java.sql.Date SQLDate = new java.sql.Date(parsed.getTime());
       
       pstm.setDate(4, SQLDate);
-      pstm.setInt(5, product.getBarCode());
+      pstm.setInt(5, product.getBarcode());
       pstm.executeUpdate();
   }
   

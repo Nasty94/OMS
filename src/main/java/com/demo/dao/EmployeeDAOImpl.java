@@ -41,7 +41,7 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
     	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
 	     Statement s=connection.createStatement();
 	        
-	     s.execute("SELECT * FROM CLIENT");
+	     //s.execute("SELECT * FROM CLIENT");
 	     ResultSet rs = s.executeQuery(query);
 	     List<EmployeeVO> employees = new ArrayList<EmployeeVO>();
 	     
