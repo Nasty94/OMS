@@ -177,7 +177,7 @@ public static OrderVO findOrder(Connection conn, int parseInt) {
 
 
 public static void insertEmployee(Connection conn, EmployeeVO employee) throws SQLException {
-	String sql = "Insert into Client(securitycode, firsnamt, lastname, phone, country, address) values (?,?,?,?,?,?)";
+	String sql = "Insert into Client(securitycode, firstname, lastname, phone, country, address) values (?,?,?,?,?,?)";
 
     PreparedStatement pstm = conn.prepareStatement(sql);
 
@@ -185,8 +185,8 @@ public static void insertEmployee(Connection conn, EmployeeVO employee) throws S
     pstm.setString(2, employee.getFirstName());
     pstm.setString(3, employee.getLastName());
     pstm.setInt(4, employee.getPhone());
-    pstm.setString(4, employee.getCountry());
-    pstm.setString(5, employee.getAddress());
+    pstm.setString(5, employee.getCountry());
+    pstm.setString(6, employee.getAddress());
 
     pstm.executeUpdate();
 	

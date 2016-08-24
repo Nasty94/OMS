@@ -254,20 +254,24 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           Statement validate = conn.createStatement();
           ResultSet vresult = null;
           vresult = validate.executeQuery("SELECT * FROM CLIENT WHERE SECURITYCODE=" + client);
-       /*   if (!vresult.isBeforeFirst()){
+          if (!vresult.next()){
+        	  
         	  errorString = "Sorry! This client does not exists in our database. Please add it before proceed the order!";
+        	  System.out.println(errorString);
         	  response.sendRedirect(request.getContextPath() + "/order");
         	  logger.debug(errorString);
-        	  return null;
+        	  throw new NullPointerException(errorString);
           }
-          else {*/
+          else {
   
           try {
               DBUtils.insertOrder(conn, vo1);
           } catch (SQLException e) {
+        	  //addActionError(e.getMessage());
               e.printStackTrace();
               errorString = e.getMessage();
               logger.debug("insertOrder() DBUtils.insertOrder Exception is executed! " + errorString);
+          }
           }
            
           // Store infomation to request attribute, before forward to views.

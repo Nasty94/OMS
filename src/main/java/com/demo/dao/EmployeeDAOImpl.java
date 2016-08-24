@@ -184,7 +184,7 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
         
         List<CountryVO> countries = getAllCountries();
         
-        if(countries.contains(vo1.getCountry())) {
+       // if(countries.contains(vo1.getCountry())) {
   
         try {
             DBUtils.updateEmployee(conn, vo1);
@@ -197,7 +197,7 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
         	logger.debug("updateEmployee() ParseException is executed! " + e.getMessage());
  		 return null;
  	}
-        }
+       // }
   
         // Store infomation to request attribute, before forward to views.
         request.setAttribute("errorString", errorString);

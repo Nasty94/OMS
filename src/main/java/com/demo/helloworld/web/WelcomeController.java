@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.demo.edit.DoEditEmployeeServlet;
 import com.demo.helloworld.service.HelloWorldService;
 import com.demo.service.EmployeeChange;
+import com.demo.service.EmployeeCreater;
 import com.demo.service.EmployeeUpdate;
 import com.demo.service.OrderCreater;
 import com.demo.service.OrderGetImpl;
@@ -228,6 +229,21 @@ public class WelcomeController extends HttpServlet {
 	    logger.debug("productInsert() is executed!");
 
 	        model.addAttribute("NewProduct", createrP.insertProduct(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="employeeCreaterImpl")
+	    EmployeeCreater createrE;
+	    
+	    @RequestMapping(value = "doCreateEmployee",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String insertEmployee(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("employeeInsert() is executed!");
+
+	        model.addAttribute("NewEmployee", createrE.insertEmployee(request, response));
 	        return "index";
 	    }
 	    

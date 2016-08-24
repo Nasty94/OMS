@@ -106,7 +106,8 @@ table, th, td {
 			<a class="btn btn-default" href="http://localhost:8080/oms/employee" role="button">View details</a>
 		</p>
 		<br><br>
-		
+		<h3>Edit client form</h3>
+		<br><br>
 		  <div class="form">	
        <form id = "changeEmployee" method="POST" action="doEditEmployee">
           <input type="hidden" name="securitycode" value="${employee.securitycode}" />
@@ -146,14 +147,16 @@ table, th, td {
        </form>
   </div>
   
-    
+    <br><br>
+		<h3>Add client form</h3>
+		<br><br>
     <div class="form">	
-       <form id = "createClient" method="POST" action="doCreateEmployee">
+       <form id = "createEmployee" method="POST" action="doCreateEmployee">
           
           <table border="0">
               <tr>
                 <td>Code</td>
-                <td><input type="text" name="ordernr" value="${order.ordernr}" required/></td>
+                <td><input type="text" name="securitycode" value="${employee.securitycode}" required/></td>
              </tr>
              <tr>
                 <td>First Name</td>
@@ -222,6 +225,9 @@ table, th, td {
 			<a class="btn btn-default" href="http://localhost:8080/oms/product" role="button">View details</a>
 		</p>
 		
+	
+		<br><br>
+		<h3>Edit product form</h3>
 		<br><br>
   <div class="form">	
        <form id = "changeProduct" method="POST" action="doEditProduct">
@@ -258,7 +264,9 @@ table, th, td {
           </table>
        </form>
   </div>
-  
+  <br><br>
+		<h3>Add product form</h3>
+		<br><br>
     <div class="form">	
        <form id = "createProduct" method="POST" action="doCreateProduct">
           
@@ -336,7 +344,9 @@ table, th, td {
 		
 		<br><br>
 		
-		
+	
+		<h3>Add order form</h3>
+		<br><br>
 		
 		  <div class="form">	
        <form id = "createOrder" method="POST" action="doCreateOrder">
@@ -367,6 +377,7 @@ table, th, td {
              <br><br>
                 <td colspan = "2">
                     <input type="submit" value="Create" />
+                    <s:actionerror/>
                     <a href="${pageContext.request.contextPath}/order">Cancel</a>
                 </td>
              </tr>
