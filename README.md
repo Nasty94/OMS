@@ -23,6 +23,8 @@ location: "~/Documents/GitHub/OMS/src/main/oms"
 username: "sa"
 password: ""
 
+
+
 NB! Currently database file is located in my local direcoty (see location). To connect to database, please check location in each method of 
 the following files:
 
@@ -37,4 +39,11 @@ Other comments:
 - security code, order number and barcode are type of Integer.
 - price and converted price are type of Integer.
 - date are type of String.
+
+Unused files:
+
+- com.demo.h2.*
+- com..h2.*
+- com.demo.controller.DropDownBoxController.java
+- com.demo.edit.*
 
