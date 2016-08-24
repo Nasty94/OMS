@@ -25,7 +25,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.demo.h2.DBUtils;
+import com.demo.model.CountryVO;
 import com.demo.model.EmployeeVO;
+import com.demo.model.OrderVO;
 import com.demo.model.ProductVO;
  
 @Repository
@@ -187,6 +189,66 @@ public class ProductDAOImpl implements ProductDAO {
   
 	        
 	     }
+
+	@Override
+	public ProductVO insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.debug("insertProduct() is executed!");
+   	 Connection conn = null;
+		try {
+			conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+		} catch (SQLException e1) {
+			logger.debug("InsertProduct Connection Exception() is executed!" + e1.getMessage());
+			e1.printStackTrace();
+		}
+		
+	 
+	
+	 int barcode = Integer.parseInt((String) request.getParameter("barcode"));
+     String name = (String) request.getParameter("name");
+     int price = Integer.parseInt((String)request.getParameter("price"));
+     String date = (String) request.getParameter("date");
+     String description = (String) request.getParameter("description");
+
+     String errorString = null;
+
+     ProductVO vo1 = new ProductVO();
+     vo1.setBarcode(barcode);
+     vo1.setName(name);
+     vo1.setPrice(price);
+     vo1.setDescription(description);
+     vo1.setDate(date);
+     // Product ID is the string literal [a-zA-Z_0-9]
+     // with at least 1 character
+     //String regex = "\\w+";
+
+     try {
+         DBUtils.insertProduct(conn, vo1);
+     } catch (SQLException e) {
+         e.printStackTrace();
+         errorString = e.getMessage();
+         logger.debug("insertProduct() DBUtils.insertOrder Exception is executed! " + errorString);
+     }
+      
+     // Store infomation to request attribute, before forward to views.
+     request.setAttribute("errorString", errorString);
+     request.setAttribute("NewProduct", vo1);
+
+     // If error, forward to Edit page.
+     if (errorString != null) {
+   	  ServletContext context = request.getSession().getServletContext();
+         RequestDispatcher dispatcher = context.getRequestDispatcher("/WEB-INF/views/index.jsp");
+         dispatcher.forward(request, response);
+     }
+
+     // If everything nice.
+     // Redirect to the product listing page.            
+     else {
+         response.sendRedirect(request.getContextPath() + "/product");
+     }
+     return vo1;
+	}
+	
+}
     	
 
-}
+

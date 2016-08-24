@@ -27,7 +27,9 @@ import com.demo.service.EmployeeUpdate;
 import com.demo.service.OrderCreater;
 import com.demo.service.OrderGetImpl;
 import com.demo.service.OrderManager;
+import com.demo.service.OrderSort;
 import com.demo.service.ProductChange;
+import com.demo.service.ProductCreater;
 import com.demo.service.EmployeeManager;
 import com.demo.service.EmployeeManagerImpl;
 import com.demo.service.ProductManager;
@@ -211,6 +213,36 @@ public class WelcomeController extends HttpServlet {
 	    logger.debug("orderInsert() is executed!");
 
 	        model.addAttribute("NewOrder", creater.insertOrder(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="productCreaterImpl")
+	    ProductCreater createrP;
+	 
+	    @RequestMapping(value = "doCreateProduct",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String insertProduct(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("productInsert() is executed!");
+
+	        model.addAttribute("NewProduct", createrP.insertProduct(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="orderSort")
+	    OrderSort sort;
+	    
+	    @RequestMapping(value = "sort",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String sort(Model model) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("/sort() is executed!");
+
+	        model.addAttribute("sort", sort.sort());
 	        return "index";
 	    }
 	    

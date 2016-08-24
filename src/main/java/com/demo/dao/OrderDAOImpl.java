@@ -130,7 +130,7 @@ public class OrderDAOImpl implements OrderDAO {
          		"SELECT a.ORDERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, a.CLIENT, "
          		+ "b.NAME, b.PRICE, b.DESCRIPTION,  b.DATE "
          		+ "FROM ORDERS AS a JOIN PRODUCT AS b "
-         		+ "ON a.BARCODE = b.BARCODE";
+         		+ "ON a.BARCODE = b.BARCODE ORDER BY a.ORDERNR, b.NAME, a.CLIENT";
     	
     	
     	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
@@ -225,7 +225,7 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           int barcode = Integer.parseInt((String)request.getParameter("barcode"));
           int client = Integer.parseInt((String) request.getParameter("client"));
           String currency = null;
-          
+          String errorString = null;
           List<CountryVO> countries = getAllCountries();
           for (CountryVO v: countries){
         	  if (v.getName()== findEmployee(client).getCountry()) {
@@ -244,12 +244,23 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           vo1.setTrandate(trandate);
           vo1.setBarcode(barcode);
           vo1.setClient(client);
-          String errorString = null;
+          
     
          
           // Product ID is the string literal [a-zA-Z_0-9]
           // with at least 1 character
           //String regex = "\\w+";
+          
+          Statement validate = conn.createStatement();
+          ResultSet vresult = null;
+          vresult = validate.executeQuery("SELECT * FROM CLIENT WHERE SECURITYCODE=" + client);
+       /*   if (!vresult.isBeforeFirst()){
+        	  errorString = "Sorry! This client does not exists in our database. Please add it before proceed the order!";
+        	  response.sendRedirect(request.getContextPath() + "/order");
+        	  logger.debug(errorString);
+        	  return null;
+          }
+          else {*/
   
           try {
               DBUtils.insertOrder(conn, vo1);
@@ -262,6 +273,7 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           // Store infomation to request attribute, before forward to views.
           request.setAttribute("errorString", errorString);
           request.setAttribute("NewOrder", vo1);
+          
     
           // If error, forward to Edit page.
           if (errorString != null) {
@@ -280,6 +292,52 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
     
     
     }
+
+
+	public List<OrderVO> sort() throws SQLException {
+		String query =
+         		"SELECT a.ORDERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, a.CLIENT, "
+         		+ "b.NAME, b.PRICE, b.DESCRIPTION,  b.DATE "
+         		+ "FROM ORDERS AS a JOIN PRODUCT AS b "
+         		+ "ON a.BARCODE = b.BARCODE ORDER BY a.ORDERNR";
+    	
+    	
+    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+     	 
+ 	     Statement s=connection.createStatement();
+ 	        
+ 	    // s.execute("SELECT * FROM PRODUCT");
+ 	     ResultSet rs = s.executeQuery(query);
+ 	    
+ 	     List<OrderVO> orders = new ArrayList<OrderVO>();
+ 	     
+ 	     while(rs.next()) {
+ 	    	 int ordernr = rs.getInt("ORDERNR");
+ 	    	 int eurprice = rs.getInt("PRICE");
+ 	    	 String trandate = rs.getString("TRANDATE");
+ 	    	 int barcode = rs.getInt("BARCODE");
+ 	    	 int client = rs.getInt("CLIENT");
+ 	    	 String name = rs.getString("NAME");
+ 	    	 int convprice = rs.getInt("CONVPRICE");
+ 	    	 String description = rs.getString("DESCRIPTION");
+ 	    	 String date = rs.getString("DATE");
+
+ 	    	 
+ 	    	 OrderVO vo1 = new OrderVO();
+ 	         vo1.setOrdernr(ordernr);
+ 	         vo1.setPrice(eurprice);
+ 	         vo1.setTrandate(trandate);
+ 	         vo1.setBarcode(barcode);
+ 	         vo1.setClient(client);
+ 	         vo1.setName(name);
+ 	         vo1.setConvprice(convprice);
+ 	         vo1.setDescription(description);
+ 	         vo1.setDate(date);
+ 	         orders.add(vo1);
+ 	     }
+
+         return orders;
+	}
 }
 
 

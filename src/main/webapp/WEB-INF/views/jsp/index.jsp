@@ -12,15 +12,25 @@
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
 
+<script language="javascript" type="text/javascript">
 
-<script src="editEmployeeView.jsp"></script>
-<script>
 $(function(){
     $('.create-order').on('click', function(e){
         e.preventDefault();
         $(this).next('.order-form').show();
     });
 });
+
+
+function validation(){
+   alert("validation");
+   String createOrder = (String)request.getAttribute("errorString");
+   if(createOrder!=null) {
+       windows.location= "http://localhost:8080/oms";
+       out.println("<font color=red size=4px>" + createOrder + "</font>");
+       return false;
+   }
+}
 </script>
 
 <style>
@@ -34,7 +44,7 @@ table, th, td {
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="#">Order Management System</a>
+		<a class="navbar-brand" href="http://localhost:8080/oms">Order Management System</a>
 	</div>
   </div>
 </nav>
@@ -64,7 +74,7 @@ table, th, td {
 		
 		<table style="width:100%" border="1">
         <tr>
-            <th width="70" height="100" >Employee Securitycode</th>
+            <th width="70" height="100" >Client Security code</th>
             <th width="70" height="100" >First Name</th>
             <th width="70" height="100" >Last Name</th>
             <th width="70" height="100" >Phone</th>
@@ -129,6 +139,46 @@ table, th, td {
              <br><br>
                 <td colspan = "2">
                     <input type="submit" value="Change" />
+                    <a href="${pageContext.request.contextPath}/employee">Cancel</a>
+                </td>
+             </tr>
+          </table>
+       </form>
+  </div>
+  
+    
+    <div class="form">	
+       <form id = "createClient" method="POST" action="doCreateEmployee">
+          
+          <table border="0">
+              <tr>
+                <td>Code</td>
+                <td><input type="text" name="ordernr" value="${order.ordernr}" required/></td>
+             </tr>
+             <tr>
+                <td>First Name</td>
+                <td><input type="text" name="firstname" value="${employee.firstName}" /></td>
+             </tr>
+             <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lastname" value="${employee.lastName}" /></td>
+             </tr>
+             <tr>
+                <td>Phone</td>
+                <td><input type="text" name="phone" value="${employee.phone}" /></td>
+             </tr>
+             <tr>
+                <td>Country</td>
+                <td><input type="text" name="country" value="${employee.country}" required/></td>
+             </tr>
+             <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" value="${employee.address}" /></td>
+             </tr>
+             <tr>
+             <br><br>
+                <td colspan = "2">
+                    <input type="submit" value="Create" />
                     <a href="${pageContext.request.contextPath}/employee">Cancel</a>
                 </td>
              </tr>
@@ -208,6 +258,42 @@ table, th, td {
           </table>
        </form>
   </div>
+  
+    <div class="form">	
+       <form id = "createProduct" method="POST" action="doCreateProduct">
+          
+          <table border="0">
+             <tr>
+                <td>Barcode</td>
+                <td><input type="text" name="barcode" value="${product.barcode}" required/></td>
+             </tr>
+             <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" value="${name}" /></td>
+             </tr>
+             <tr>
+                <td>Price</td>
+                <td><input type="text" name="price" value="${product.price}" required/></td>
+             </tr>
+             <tr>
+                <td>Description</td>
+                <td><input type="text" name="description" value="${product.description}" /></td>
+             </tr>
+             <tr>
+                <td>Date</td>
+                <td><input type="text" name="date" value="${product.date}" /></td>
+             </tr>
+            
+             <tr>
+             <br><br>
+                <td colspan = "2">
+                    <input type="submit" value="Create" />
+                    <a href="${pageContext.request.contextPath}/product">Cancel</a>
+                </td>
+             </tr>
+          </table>
+       </form>
+  </div>
 		
 	</div>
 	<div class="col-md-4">
@@ -215,7 +301,7 @@ table, th, td {
 		
 		<table style="width:100%" border="1">
         <tr>
-            <th width="70" height="100" >Order nr</th>
+            <th width="70" height="100" ><a class="sort" href="http://localhost:8080/oms/sort">Order nr</a></th>
             <th width="70" height="100" >EUR price </th>
             <th width="70" height="100" >Transaction date</th>
             <th width="70" height="100" >Barcode</th>
@@ -258,11 +344,11 @@ table, th, td {
           <table border="0">
              <tr>
                 <td>Code</td>
-                <td><input type="text" name="ordernr" value="${order.ordernr}" /></td>
+                <td><input type="text" name="ordernr" value="${order.ordernr}" required/></td>
              </tr>
              <tr>
                 <td>Eur price</td>
-                <td><input type="text" name="price" value="${order.price}" /></td>
+                <td><input type="text" name="price" value="${order.price}" required/></td>
              </tr>
              <tr>
                 <td>Transaction date</td>
@@ -270,11 +356,11 @@ table, th, td {
              </tr>
              <tr>
                 <td>Product barcode</td>
-                <td><input type="text" name="barcode" value="${order.barcode}" /></td>
+                <td><input type="text" name="barcode" value="${order.barcode}" required/></td>
              </tr>
              <tr>
                 <td>Client ID</td>
-                <td><input type="text" name="client" value="${order.client}" /></td>
+                <td><input type="text" name="client" value="${order.client}" required/></td>
              </tr>
              
              <tr>

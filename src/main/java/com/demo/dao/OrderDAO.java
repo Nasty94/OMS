@@ -18,6 +18,8 @@ public interface OrderDAO
     public OrderVO insertOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException;
 
 	public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException;
+
+	public List<OrderVO> sort() throws SQLException;
     
 
 }

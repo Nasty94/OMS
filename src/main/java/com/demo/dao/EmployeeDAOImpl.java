@@ -21,6 +21,7 @@ import org.springframework.stereotype.Repository;
 import com.demo.h2.DBUtils;
 import com.demo.model.CountryVO;
 import com.demo.model.EmployeeVO;
+import com.demo.model.ProductVO;
  
 @Repository
 public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
@@ -220,6 +221,67 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
   
 	        
 	     }
+
+	@Override
+	public EmployeeVO insertEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.debug("insertEmployee() is executed!");
+	   	 Connection conn = null;
+			try {
+				conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+			} catch (SQLException e1) {
+				logger.debug("InsertEmployee Connection Exception() is executed!" + e1.getMessage());
+				e1.printStackTrace();
+			}
+			
+		 
+		
+		 int securitycode = Integer.parseInt((String) request.getParameter("securitycode"));
+	     String firstname = (String) request.getParameter("firstname");
+	     String lastname = (String) request.getParameter("lastname");
+	     int phone = Integer.parseInt((String)request.getParameter("phone"));
+	     String country = (String) request.getParameter("country");
+	     String address = (String) request.getParameter("address");
+
+	     String errorString = null;
+
+	     EmployeeVO vo1 = new EmployeeVO();
+	     vo1.setSecuritycode(securitycode);
+	     vo1.setFirstName(firstname);
+	     vo1.setLastName(lastname);
+	     vo1.setPhone(phone);
+	     vo1.setCountry(country);
+	     vo1.setAddress(address);
+	     
+	     // Product ID is the string literal [a-zA-Z_0-9]
+	     // with at least 1 character
+	     //String regex = "\\w+";
+
+	     try {
+	         DBUtils.insertEmployee(conn, vo1);
+	     } catch (SQLException e) {
+	         e.printStackTrace();
+	         errorString = e.getMessage();
+	         logger.debug("insertEmployee() DBUtils.insertEmployee Exception is executed! " + errorString);
+	     }
+	      
+	     // Store infomation to request attribute, before forward to views.
+	     request.setAttribute("errorString", errorString);
+	     request.setAttribute("NewEmployee", vo1);
+
+	     // If error, forward to Edit page.
+	     if (errorString != null) {
+	   	  ServletContext context = request.getSession().getServletContext();
+	         RequestDispatcher dispatcher = context.getRequestDispatcher("/WEB-INF/views/index.jsp");
+	         dispatcher.forward(request, response);
+	     }
+
+	     // If everything nice.
+	     // Redirect to the product listing page.            
+	     else {
+	         response.sendRedirect(request.getContextPath() + "/employee");
+	     }
+	     return vo1;
+		}
     	
 
 }

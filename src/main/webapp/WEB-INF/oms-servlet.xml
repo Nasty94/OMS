@@ -19,11 +19,14 @@
     <bean id="productManagerImpl" class="com.demo.service.ProductManagerImpl"/>
      <bean id="orderManagerImpl" class="com.demo.service.OrderManagerImpl"/>
      <bean id="orderCreaterImpl" class="com.demo.service.OrderCreaterImpl"/>
+      <bean id="productCreaterImpl" class="com.demo.service.ProductCreaterImpl"/>
+       <bean id="employeeCreaterImpl" class="com.demo.service.EmployeeCreaterImpl"/>
       <bean id="orderGetImpl" class="com.demo.service.OrderGetImpl"/>
     <bean id="employeeChange" class="com.demo.service.EmployeeChange"/>
      <bean id="employeeUpdate" class="com.demo.service.EmployeeUpdate"/>
       <bean id="productChange" class="com.demo.service.ProductChange"/>
      <bean id="productUpdate" class="com.demo.service.ProductUpdate"/>
+     <bean id="orderSort" class="com.demo.service.OrderSort"/>
      
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/jsp/" />

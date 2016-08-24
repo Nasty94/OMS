@@ -16,4 +16,6 @@ public interface EmployeeDAO
     public EmployeeVO getEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException;
     
     public EmployeeVO updateEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException;
+
+	public EmployeeVO insertEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

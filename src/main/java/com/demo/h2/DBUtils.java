@@ -154,11 +154,42 @@ public class DBUtils {
  
       pstm.executeUpdate();
   }
+ 
+ public static void insertProduct(Connection conn, ProductVO product) throws SQLException {
+     String sql = "Insert into Product(barcode, name, price, description, date) values (?,?,?,?,?)";
+
+     PreparedStatement pstm = conn.prepareStatement(sql);
+
+     pstm.setInt(1, product.getBarcode());
+     pstm.setString(2, product.getName());
+     pstm.setInt(3, product.getPrice());
+     pstm.setString(4, product.getDescription());
+     pstm.setString(5, product.getDate());
+
+     pstm.executeUpdate();
+ }
 
 
 public static OrderVO findOrder(Connection conn, int parseInt) {
 	OrderVO order = new OrderVO();
 	return order;
+}
+
+
+public static void insertEmployee(Connection conn, EmployeeVO employee) throws SQLException {
+	String sql = "Insert into Client(securitycode, firsnamt, lastname, phone, country, address) values (?,?,?,?,?,?)";
+
+    PreparedStatement pstm = conn.prepareStatement(sql);
+
+    pstm.setInt(1, employee.getSecuritycode());
+    pstm.setString(2, employee.getFirstName());
+    pstm.setString(3, employee.getLastName());
+    pstm.setInt(4, employee.getPhone());
+    pstm.setString(4, employee.getCountry());
+    pstm.setString(5, employee.getAddress());
+
+    pstm.executeUpdate();
+	
 }
  
  /* public static void deleteProduct(Connection conn, String code) throws SQLException {
