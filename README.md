@@ -46,4 +46,4 @@ Unused files:
 - com..h2.*
 - com.demo.controller.DropDownBoxController.java
 - com.demo.edit.*
-
+- all .jsp files except index.jsp
