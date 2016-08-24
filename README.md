@@ -39,6 +39,7 @@ Other comments:
 - security code, order number and barcode are type of Integer.
 - price and converted price are type of Integer.
 - date are type of String.
+- basic unfctionality implemented in com.demo.dao.*
 
 Unused files:
 
