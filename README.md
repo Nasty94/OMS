@@ -33,5 +33,8 @@ the following files:
 
 Other comments:
 
-In OMS you can store, cretae and cahange
+- when you add order, please makse sure that client security code is in table "Client". Otherwise NullPointerException raised.
+- security code, order number and barcode are type of Integer.
+- price and converted price are type of Integer.
+- date are type of String.
 
