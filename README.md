@@ -39,8 +39,7 @@ password: ""
 
 
 
-NB! Currently database file is located in my local direcoty (see location). To connect to database, please check location in each method of 
-the following files:
+NB! Connection to database is shown in the following files:
 
 - com/demo/h2/DBUtils.java
 - demo/dao/EmployeeDAOImpl.java
