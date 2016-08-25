@@ -37,6 +37,7 @@ location: "~/oms"
 username: "sa"
 password: ""
 
+Once project is laucnhed, go to http://localhost:8080/oms/console to access database.
 
 
 NB! Connection to database is shown in the following files:
@@ -58,6 +59,7 @@ Other comments:
      * no duplicate checks are implemented
      * it is NOT possible to add order if client does not exist in database
      * no erro are shown, user just redirested no relevant tag and do data is added
+- as there was no info about deleting or editing order, these buttons were not created
 
 Unused files:
 
