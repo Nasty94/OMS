@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.text.ParseException;
 
@@ -236,7 +237,7 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
 	     }
 
 	@Override
-	public EmployeeVO insertEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public EmployeeVO insertEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		logger.debug("insertEmployee() is executed!");
 	   	 Connection conn = null;
 			try {
@@ -246,7 +247,8 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
 				e1.printStackTrace();
 			}
 			
-		 
+			 // Create a Writer to write the response mess
+			 PrintWriter out = response.getWriter();
 		
 		 int securitycode = Integer.parseInt((String) request.getParameter("securitycode"));
 	     String firstname = (String) request.getParameter("firstname");
@@ -268,6 +270,52 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
 	     // Product ID is the string literal [a-zA-Z_0-9]
 	     // with at least 1 character
 	     //String regex = "\\w+";
+	     
+	     
+         Statement validate = conn.createStatement();
+         Statement validate1 = conn.createStatement();
+         ResultSet vresult =  validate.executeQuery("SELECT * FROM COUNTRY WHERE NAME LIKE " + "'"+country+"'");
+         ResultSet vresult1 = validate1.executeQuery("SELECT * FROM CLIENT WHERE SECURITYCODE="+securitycode);
+         if (!vresult.next()){
+       	  
+       	  errorString = "Sorry! This country is not supported.";
+       	  //System.out.println(errorString);
+       	  
+       	  logger.debug(errorString);
+       	  
+       	// Set the MIME type for the response message
+             response.setContentType("text/html");
+            
+         
+             // The programming logic to produce a HTML page
+             out.println("<p>" + errorString + "</p>");
+            /* ScriptEngineManager factory = new ScriptEngineManager();
+             ScriptEngine engine = factory.getEngineByName("JavaScript");
+             engine.eval("window.alert("+errorString+")");*/
+             
+             response.sendRedirect(request.getContextPath() + "/employee");
+       	  
+         }
+         else if (vresult1.next()){
+        	 errorString = "Sorry! This securitycode is already assigned to another client " + vo1.getFirstName() + " " + vo1.getLastName();
+          	  //System.out.println(errorString);
+          	  
+          	  logger.debug(errorString);
+          	  
+          	// Set the MIME type for the response message
+                response.setContentType("text/html");
+               
+            
+                // The programming logic to produce a HTML page
+                out.println("<p>" + errorString + "</p>");
+               /* ScriptEngineManager factory = new ScriptEngineManager();
+                ScriptEngine engine = factory.getEngineByName("JavaScript");
+                engine.eval("window.alert("+errorString+")");*/
+                
+                response.sendRedirect(request.getContextPath() + "/employee");
+          	  
+            }
+         else {
 
 	     try {
 	         DBUtils.insertEmployee(conn, vo1);
@@ -276,6 +324,7 @@ public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
 	         errorString = e.getMessage();
 	         logger.debug("insertEmployee() DBUtils.insertEmployee Exception is executed! " + errorString);
 	     }
+         }
 	      
 	     // Store infomation to request attribute, before forward to views.
 	     request.setAttribute("errorString", errorString);

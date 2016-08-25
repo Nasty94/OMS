@@ -50,16 +50,16 @@ public class OrderDAOImpl  implements OrderDAO {
 	private double pickRate(String Currency) {
 		 ExchangeRate exchange = new ExchangeRate();
 		 
-		 if (Currency=="USD") {
+		 if (Currency.contains("USD")) {
     	  double rateUsd = exchange.getEuroUsdRate();
     	  return rateUsd;
-		 } else if (Currency=="UK") {
+		 } else if (Currency.contains("UK")) {
     	  double rateUk = exchange.getEuroUkRate();
     	  return rateUk;
-		 }else if (Currency=="EUR") {
+		 }else if (Currency.contains("EUR")) {
     	  double rateEur = exchange.getEuroEurRate();
     	  return rateEur;
-		 }else if (Currency=="RUB") {
+		 }else if (Currency.contains("RUB")) {
     	  double rateRub = exchange.getEuroRubRate();
     	  return rateRub;
 		 }
@@ -251,8 +251,11 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           List<CountryVO> countries = getAllCountries();
           try {
           for (CountryVO v: countries){
-        	  if (v.getName()== findEmployee(client).getCountry()) {
+        	  if (v.getName().contains(findEmployee(client).getCountry())) {
         		  currency = v.getCurrency();
+       			logger.debug("User currency " + currency);
+        	  } else {
+        		  logger.debug("No such country " + v.getName());
         	  }
           }
           } catch (NullPointerException e) {
@@ -260,6 +263,8 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           }
           
           double rate = pickRate(currency);
+ 			logger.debug("Currency rate " + rate);
+
           OrderVO vo1 = new OrderVO();
           vo1.setOrdernr(ordernr);
           

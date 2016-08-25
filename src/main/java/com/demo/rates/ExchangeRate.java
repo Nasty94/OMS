@@ -54,5 +54,9 @@ public class ExchangeRate {
  
         double rateUsd = exchange.getEuroUsdRate();
         System.out.println("Euro/USD: " + rateUsd);*/
+        
+        double rateEUR = exchange.getEuroEurRate();
+        System.out.println(rateEUR);
+        System.out.println((int) rateEUR * 30);
     }
 }

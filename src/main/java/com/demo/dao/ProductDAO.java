@@ -18,5 +18,5 @@ public interface ProductDAO
     
     public ProductVO updateProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException;
 
-	public ProductVO insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	public ProductVO insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException;
 }

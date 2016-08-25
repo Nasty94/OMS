@@ -1,6 +1,7 @@
 package com.demo.dao;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -205,7 +206,7 @@ public class ProductDAOImpl implements ProductDAO {
 	     }
 
 	@Override
-	public ProductVO insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ProductVO insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		logger.debug("insertProduct() is executed!");
    	 Connection conn = null;
 		try {
@@ -215,7 +216,9 @@ public class ProductDAOImpl implements ProductDAO {
 			e1.printStackTrace();
 		}
 		
-	 
+		 // Create a Writer to write the response mess
+		 PrintWriter out = response.getWriter();
+	
 	
 	 int barcode = Integer.parseInt((String) request.getParameter("barcode"));
      String name = (String) request.getParameter("name");
@@ -234,6 +237,30 @@ public class ProductDAOImpl implements ProductDAO {
      // Product ID is the string literal [a-zA-Z_0-9]
      // with at least 1 character
      //String regex = "\\w+";
+     
+     Statement validate = conn.createStatement();
+     ResultSet vresult =  validate.executeQuery("SELECT * FROM PRODUCT WHERE BARCODE=" + barcode);
+     if (vresult.next()){
+   	  
+   	  errorString = "Sorry! This barcode is already assigned to another product " + vo1.getName();
+   	  //System.out.println(errorString);
+   	  
+   	  logger.debug(errorString);
+   	  
+   	// Set the MIME type for the response message
+         response.setContentType("text/html");
+        
+     
+         // The programming logic to produce a HTML page
+         out.println("<p>" + errorString + "</p>");
+        /* ScriptEngineManager factory = new ScriptEngineManager();
+         ScriptEngine engine = factory.getEngineByName("JavaScript");
+         engine.eval("window.alert("+errorString+")");*/
+         
+         response.sendRedirect(request.getContextPath() + "/employee");
+   	  
+     }
+     else {
 
      try {
          DBUtils.insertProduct(conn, vo1);
@@ -242,7 +269,7 @@ public class ProductDAOImpl implements ProductDAO {
          errorString = e.getMessage();
          logger.debug("insertProduct() DBUtils.insertOrder Exception is executed! " + errorString);
      }
-      
+     }
      // Store infomation to request attribute, before forward to views.
      request.setAttribute("errorString", errorString);
      request.setAttribute("NewProduct", vo1);
