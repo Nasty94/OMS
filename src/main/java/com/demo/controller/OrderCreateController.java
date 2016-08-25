@@ -3,6 +3,7 @@ package com.demo.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.script.ScriptException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class OrderCreateController extends HttpServlet
    
  
     @RequestMapping(value = "/info", method = {RequestMethod.GET, RequestMethod.POST})
-    public String getOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+    public String getOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ScriptException
     {
         model.addAttribute("order", manager.insertOrder(request,  response));
         return "index";

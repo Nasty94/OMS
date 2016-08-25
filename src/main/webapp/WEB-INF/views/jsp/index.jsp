@@ -376,8 +376,26 @@ table, th, td {
              <tr>
              <br><br>
                 <td colspan = "2">
+                <%
+                   try{
+                   %>
                     <input type="submit" value="Create" />
-                    <s:actionerror/>
+                    <% }
+                    catch (Exception e){
+                         out.println("An exception occurred: " + e.getMessage());
+                    }
+                    %>
+                    
+                    
+                    
+                    <%-- hasActionErrors() method is defined in ActionSupport --%>
+                   <%--   <s:if test="hasActionErrors()">
+                         <div class="errorDiv">
+                                     <s:actionerror/>              
+                         </div>
+                    </s:if>
+                    --%>
+                    
                     <a href="${pageContext.request.contextPath}/order">Cancel</a>
                 </td>
              </tr>

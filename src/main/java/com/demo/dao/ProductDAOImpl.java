@@ -2,6 +2,7 @@ package com.demo.dao;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,9 +48,22 @@ public class ProductDAOImpl implements ProductDAO {
     {
     	String query =
          		"SELECT * FROM PRODUCT";
-    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
-     	 
+    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
+     	 //~/Documents/GitHub/OMS/src/main/oms
  	     Statement s=connection.createStatement();
+ 	     
+ 	    String create = "create table product(barcode int, name varchar(255), price int, description varchar(255), date varchar(255))";
+ 		 TableCheck(connection, "PRODUCT", create);
+ 		 
+ 		 
+    	 String create1 = "create table orders(ordernr int, convprice int, trandate varchar(255), barcode int, client int)";
+         TableCheck(connection, "ORDERS", create1);
+         
+         String create2 = "create table client(securitycode int, firstname varchar(255), lastname varchar(255), phone int, country varchar(255), address varchar(255))";
+		 	TableCheck(connection, "CLIENT", create2);
+  	      
+	         String create3 = "create table country(name varchar(255), currency varchar(255))";
+	         TableCheck(connection, "COUNTRY", create3);
  	        
  	    // s.execute("SELECT * FROM PRODUCT");
  	     ResultSet rs = s.executeQuery(query);
@@ -84,7 +98,7 @@ public class ProductDAOImpl implements ProductDAO {
     	logger.debug("getProduct() is executed!");
     	 Connection conn = null;
  		try {
- 			conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+ 			conn = DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
  		} catch (SQLException e1) {
  			logger.debug("getProduct Connection Exception() is executed!" + e1.getMessage());
  			e1.printStackTrace();
@@ -134,7 +148,7 @@ public class ProductDAOImpl implements ProductDAO {
     	logger.debug("updateProduct() is executed!");
     	 Connection conn = null;
   		try {
-  			conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+  			conn = DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
   		} catch (SQLException e1) {
   			logger.debug("updateProduct()Connection Exception is executed! " + e1.getMessage());
   			e1.printStackTrace();
@@ -195,7 +209,7 @@ public class ProductDAOImpl implements ProductDAO {
 		logger.debug("insertProduct() is executed!");
    	 Connection conn = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
 		} catch (SQLException e1) {
 			logger.debug("InsertProduct Connection Exception() is executed!" + e1.getMessage());
 			e1.printStackTrace();
@@ -247,6 +261,19 @@ public class ProductDAOImpl implements ProductDAO {
      }
      return vo1;
 	}
+	
+	private static  void TableCheck (Connection conn, String TableName, String sql) throws SQLException {
+		 DatabaseMetaData dbm = conn.getMetaData();
+		// check if "employee" table is there
+		ResultSet tables = dbm.getTables(null, null, TableName, null);
+		if (!tables.next()) {
+			PreparedStatement create = conn.prepareStatement(sql);
+		    create.executeUpdate();
+		}
+		
+		
+	 }
+	 
 	
 }
     	

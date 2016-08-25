@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.script.ScriptException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -206,7 +207,7 @@ public class WelcomeController extends HttpServlet {
 	    OrderCreater creater;
 	 
 	    @RequestMapping(value = "doCreateOrder",method = {RequestMethod.POST, RequestMethod.GET})
-	    public String insertOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    public String insertOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ScriptException
 	    
 	    
 	    {

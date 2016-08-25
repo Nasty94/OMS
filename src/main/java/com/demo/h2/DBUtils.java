@@ -1,6 +1,7 @@
 package com.demo.h2;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -142,6 +143,9 @@ public class DBUtils {
   }
  
  public static void insertOrder(Connection conn, OrderVO order) throws SQLException {
+	  String create = "create table orders(ordernr int, convprice int, trandate varchar(255), barcode int, client int)";
+	  TableCheck(conn, "ORDERS", create);
+	  
       String sql = "Insert into Orders(ordernr, convprice, trandate, barcode, client) values (?,?,?,?,?)";
  
       PreparedStatement pstm = conn.prepareStatement(sql);
@@ -156,6 +160,9 @@ public class DBUtils {
   }
  
  public static void insertProduct(Connection conn, ProductVO product) throws SQLException {
+	 String create = "create table product(barcode int, name varchar(255), price int, description varchar(255), date varchar(255))";
+	 TableCheck(conn, "PRODUCT", create);
+	  
      String sql = "Insert into Product(barcode, name, price, description, date) values (?,?,?,?,?)";
 
      PreparedStatement pstm = conn.prepareStatement(sql);
@@ -177,6 +184,9 @@ public static OrderVO findOrder(Connection conn, int parseInt) {
 
 
 public static void insertEmployee(Connection conn, EmployeeVO employee) throws SQLException {
+	String create = "create table client(securitycode int, firstname varchar(255), lastname varchar(255), phone int, country varchar(255), address varchar(255))";
+	TableCheck(conn, "CLIENT", create);
+	  
 	String sql = "Insert into Client(securitycode, firstname, lastname, phone, country, address) values (?,?,?,?,?,?)";
 
     PreparedStatement pstm = conn.prepareStatement(sql);
@@ -192,14 +202,16 @@ public static void insertEmployee(Connection conn, EmployeeVO employee) throws S
 	
 }
  
- /* public static void deleteProduct(Connection conn, String code) throws SQLException {
-      String sql = "Delete Product where Code= ?";
- 
-      PreparedStatement pstm = conn.prepareStatement(sql);
- 
-      pstm.setString(1, code);
- 
-      pstm.executeUpdate();
-  }*/
+ private static  void TableCheck (Connection conn, String TableName, String sql) throws SQLException {
+	 DatabaseMetaData dbm = conn.getMetaData();
+	// check if "employee" table is there
+	ResultSet tables = dbm.getTables(null, null, TableName, null);
+	if (!tables.next()) {
+		PreparedStatement create = conn.prepareStatement(sql);
+	    create.executeUpdate();
+	}
+	
+	
+ }
  
 }

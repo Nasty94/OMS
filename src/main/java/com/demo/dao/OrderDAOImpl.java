@@ -1,7 +1,9 @@
 package com.demo.dao;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +13,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,9 +32,10 @@ import com.demo.model.EmployeeVO;
 import com.demo.model.OrderVO;
 import com.demo.model.ProductVO;
 import com.demo.rates.ExchangeRate;
+//import com.opensymphony.xwork2.ActionSupport;
 
 @Repository
-public class OrderDAOImpl implements OrderDAO {
+public class OrderDAOImpl  implements OrderDAO {
 	
 	private final Logger logger = LoggerFactory.getLogger(ProductDAOImpl.class);
 	/*
@@ -72,7 +78,7 @@ public class OrderDAOImpl implements OrderDAO {
 	        String query =
 	        		"SELECT * FROM COUNTRY";
 	    
-	    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+	    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
 		     Statement s=connection.createStatement();
 		        
 		     //s.execute("SELECT * FROM CLIENT");
@@ -100,7 +106,7 @@ public class OrderDAOImpl implements OrderDAO {
 	 
 	 private EmployeeVO findEmployee(int securitycode) throws SQLException {
 	      String sql = "Select a.SecurityCode, a.FirstName, a.LastName, a.Phone, a.Country, a.Address from Client a where a.SecurityCode=" +securitycode;
-	      Connection conn= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+	      Connection conn= DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
 	      PreparedStatement pstm = conn.prepareStatement(sql);
 	      	 
 	      ResultSet rs = pstm.executeQuery();
@@ -126,6 +132,8 @@ public class OrderDAOImpl implements OrderDAO {
  
     public List<OrderVO> getAllOrders() throws SQLException 
     {
+    	
+  	  
     	String query =
          		"SELECT a.ORDERNR, a.CONVPRICE, a.TRANDATE, a.BARCODE, a.CLIENT, "
          		+ "b.NAME, b.PRICE, b.DESCRIPTION,  b.DATE "
@@ -133,7 +141,19 @@ public class OrderDAOImpl implements OrderDAO {
          		+ "ON a.BARCODE = b.BARCODE ORDER BY a.ORDERNR, b.NAME, a.CLIENT";
     	
     	
-    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
+    	 
+    	 String create = "create table orders(ordernr int, convprice int, trandate varchar(255), barcode int, client int)";
+         TableCheck(connection, "ORDERS", create);
+         
+         String create1 = "create table product(barcode int, name varchar(255), price int, description varchar(255), date varchar(255))";
+ 		 TableCheck(connection, "PRODUCT", create1);
+ 		 
+ 		  String create2 = "create table client(securitycode int, firstname varchar(255), lastname varchar(255), phone int, country varchar(255), address varchar(255))";
+ 		 	TableCheck(connection, "CLIENT", create2);
+ 		 	
+ 	         String create3 = "create table country(name varchar(255), currency varchar(255))";
+ 	         TableCheck(connection, "COUNTRY", create3);
      	 
  	     Statement s=connection.createStatement();
  	        
@@ -176,7 +196,7 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
     	logger.debug("getOrder() is executed!");
     	 Connection conn = null;
  		try {
- 			conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+ 			conn = DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
  		} catch (SQLException e1) {
  			logger.debug("getOrder Connection Exception() is executed!" + e1.getMessage());
  			e1.printStackTrace();
@@ -205,19 +225,20 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
 	        
 	     }
     
-    public OrderVO insertOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+    public OrderVO insertOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ScriptException {
     	  
     	{
         	logger.debug("insertOrder() is executed!");
         	 Connection conn = null;
      		try {
-     			conn = DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+     			conn = DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
      		} catch (SQLException e1) {
      			logger.debug("InsertOrder Connection Exception() is executed!" + e1.getMessage());
      			e1.printStackTrace();
      		}
      		
-     	 
+     		 // Create a Writer to write the response message to the client over the network
+            PrintWriter out = response.getWriter();
     	
     	  int ordernr = Integer.parseInt((String) request.getParameter("ordernr"));
           int eurprice = Integer.parseInt((String) request.getParameter("price"));
@@ -226,11 +247,16 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           int client = Integer.parseInt((String) request.getParameter("client"));
           String currency = null;
           String errorString = null;
+          
           List<CountryVO> countries = getAllCountries();
+          try {
           for (CountryVO v: countries){
         	  if (v.getName()== findEmployee(client).getCountry()) {
         		  currency = v.getCurrency();
         	  }
+          }
+          } catch (NullPointerException e) {
+        	  out.println("<p> countries list is empty </p>");
           }
           
           double rate = pickRate(currency);
@@ -252,15 +278,26 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
           //String regex = "\\w+";
           
           Statement validate = conn.createStatement();
-          ResultSet vresult = null;
-          vresult = validate.executeQuery("SELECT * FROM CLIENT WHERE SECURITYCODE=" + client);
+          ResultSet vresult =  validate.executeQuery("SELECT * FROM CLIENT WHERE SECURITYCODE=" + client);
           if (!vresult.next()){
         	  
         	  errorString = "Sorry! This client does not exists in our database. Please add it before proceed the order!";
-        	  System.out.println(errorString);
-        	  response.sendRedirect(request.getContextPath() + "/order");
+        	  //System.out.println(errorString);
+        	  
         	  logger.debug(errorString);
-        	  throw new NullPointerException(errorString);
+        	  
+        	// Set the MIME type for the response message
+              response.setContentType("text/html");
+             
+          
+              // The programming logic to produce a HTML page
+              out.println("<p>" + errorString + "</p>");
+             /* ScriptEngineManager factory = new ScriptEngineManager();
+              ScriptEngine engine = factory.getEngineByName("JavaScript");
+              engine.eval("window.alert("+errorString+")");*/
+              
+              response.sendRedirect(request.getContextPath() + "/order");
+        	  
           }
           else {
   
@@ -306,7 +343,7 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
          		+ "ON a.BARCODE = b.BARCODE ORDER BY a.ORDERNR";
     	
     	
-    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/Documents/GitHub/OMS/src/main/oms", "sa", "");
+    	 Connection connection= DriverManager.getConnection("jdbc:h2:~/oms", "sa", "");
      	 
  	     Statement s=connection.createStatement();
  	        
@@ -342,6 +379,19 @@ public OrderVO getOrder(HttpServletRequest request, HttpServletResponse response
 
          return orders;
 	}
+	
+	private static  void TableCheck (Connection conn, String TableName, String sql) throws SQLException {
+		 DatabaseMetaData dbm = conn.getMetaData();
+		// check if "employee" table is there
+		ResultSet tables = dbm.getTables(null, null, TableName, null);
+		if (!tables.next()) {
+			PreparedStatement create = conn.prepareStatement(sql);
+		    create.executeUpdate();
+		}
+		
+		
+	 }
+	 
 }
 
 

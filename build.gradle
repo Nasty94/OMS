@@ -51,7 +51,8 @@ dependencies {
    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
    // https://mvnrepository.com/artifact/javax.servlet/servlet-api
 compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
-   
+// https://mvnrepository.com/artifact/com.opensymphony/xwork
+compile group: 'com.opensymphony', name: 'xwork', version: '2.1.2'
    
     
 	
