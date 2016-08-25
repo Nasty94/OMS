@@ -52,8 +52,8 @@ Other comments:
 
 Unused files:
 
-- com.demo.h2.*
-- com..h2.*
+- com.demo.h2.* (except DBUtils.java file)
+- com.h2.*
 - com.demo.controller.DropDownBoxController.java
 - com.demo.edit.*
 - all .jsp files except index.jsp
