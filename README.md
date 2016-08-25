@@ -27,8 +27,13 @@ Command line:
 
 h2 database:
 
+NB! Once new db is installed in you home direcory, there is no tables and, therefore no data. Once you click "View details" on the home page, relevant table is automatically created. However, cause tables have no data, user will not see any details unless information is manually added.
+
+NB! Used database files is copied to /src/main. So you can place this file to you home direcoty and use it. This files already has
+necessary tables and data.
+
 name: 'oms'
-location: "~/Documents/GitHub/OMS/src/main/oms"
+location: "~/oms"
 username: "sa"
 password: ""
 
@@ -49,6 +54,11 @@ Other comments:
 - price and converted price are type of Integer.
 - date are type of String.
 - basic unfctionality implemented in com.demo.dao.*
+- screenshots from interface are in /src/main/pic/
+- as there was no information about erorr handling in task description, please note that
+     * no duplicate checks are implemented
+     * it is NOT possible to add order if client does not exist in database
+     * no erro are shown, user just redirested no relevant tag and do data is added
 
 Unused files:
 
