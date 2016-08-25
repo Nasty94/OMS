@@ -15,6 +15,15 @@ Eclipse:
 - run on jetty - jettyRun
 - go to: localhost:8080/oms
 
+Command line:
+
+-  download code from this repo
+-  unpack
+-  go to project root diretory
+-  open command line: WinKey + R and type "cmd"
+-  type "gradle init"
+-  if build successfull, type "gradle jettyRun"
+-  go to: localhost:8080/oms
 
 h2 database:
 
