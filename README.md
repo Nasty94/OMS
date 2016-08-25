@@ -56,9 +56,11 @@ Other comments:
 - basic unfctionality implemented in com.demo.dao.*
 - screenshots from interface are in /src/main/pic/
 - as there was no information about erorr handling in task description, please note that
-     * no duplicate checks are implemented
+     * it is NOT possible to add product if barcode is already in database
+     * it is NOT possible to add client if securitycode is already in database
      * it is NOT possible to add order if client does not exist in database
-     * no erro are shown, user just redirested no relevant tag and do data is added
+     * no erro are shown, user just redirested no relevant tag and do data is added 
+     * to view errors please see log file
 - as there was no info about deleting or editing order, these buttons were not created
 
 Unused files:
