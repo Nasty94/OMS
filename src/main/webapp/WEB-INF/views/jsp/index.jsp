@@ -72,14 +72,14 @@ table, th, td {
 		<h2>Client</h2>
 	
 		
-		<table style="width:100%" border="1">
+		<table style="width:70%;" border="1">
         <tr>
             <th width="70" height="100" >Client Security code</th>
             <th width="70" height="100" >First Name</th>
             <th width="70" height="100" >Last Name</th>
             <th width="70" height="100" >Phone</th>
             <th width="70" height="100" >Country</th>
-            <th width="70" height="100" >Address</th>
+            <th width="50" height="100" >Address</th>
             <th width="70" height="100" >Edit</th>
             
         </tr>
@@ -109,7 +109,7 @@ table, th, td {
 		<h3>Edit client form</h3>
 		<br><br>
 		  <div class="form">	
-       <form id = "changeEmployee" method="POST" action="doEditEmployee">
+       <form id = "changeEmployee"  method="POST" action="doEditEmployee">
           <input type="hidden" name="securitycode" value="${employee.securitycode}" />
           <table border="0">
              <tr>
@@ -191,11 +191,10 @@ table, th, td {
 		
 	</div>
 	
-	
-	<div class="col-md-4">
+		<div class="col-md-4">
 		<h2>Product</h2>
 		
-		<table style="width:100%" border="1">
+		<table style="width:70%" border="1">
         <tr>
             <th width="70" height="100" >Barcode</th>
             <th width="70" height="100" >Name</th>
@@ -230,7 +229,7 @@ table, th, td {
 		<h3>Edit product form</h3>
 		<br><br>
   <div class="form">	
-       <form id = "changeProduct" method="POST" action="doEditProduct">
+       <form id = "changeProduct"  method="POST" action="doEditProduct">
           <input type="hidden" name="barcode" value="${product.barcode}" />
           <table border="0">
              <tr>
@@ -304,10 +303,12 @@ table, th, td {
   </div>
 		
 	</div>
+	
+	
 	<div class="col-md-4">
 		<h2>Order</h2>
 		
-		<table style="width:100%" border="1">
+		<table style="width:70%" border="1">
         <tr>
             <th width="70" height="100" ><a class="sort" href="http://localhost:8080/oms/sort">Order nr</a></th>
             <th width="70" height="100" >EUR price </th>
@@ -349,7 +350,7 @@ table, th, td {
 		<br><br>
 		
 		  <div class="form">	
-       <form id = "createOrder" method="POST" action="doCreateOrder">
+       <form id = "createOrder"  method="POST" action="doCreateOrder">
           
           <table border="0">
              <tr>
