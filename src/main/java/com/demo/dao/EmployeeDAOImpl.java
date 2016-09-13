@@ -22,7 +22,6 @@ import org.springframework.stereotype.Repository;
 import com.demo.h2.DBUtils;
 import com.demo.model.CountryVO;
 import com.demo.model.EmployeeVO;
-import com.demo.model.ProductVO;
  
 @Repository
 public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
