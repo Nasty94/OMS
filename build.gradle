@@ -11,7 +11,7 @@ plugins {
 }
 
 flyway {
-    url = 'jdbc:h2:file:./Documents/GitHub/webapp/src/main/webapp'
+    url = 'jdbc:h2:file:./Documents/GitHub/OMS/src/main/oms'
     user = 'sa'
 }
 
@@ -62,13 +62,13 @@ compile group: 'com.opensymphony', name: 'xwork', version: '2.1.2'
 
 // Embeded Jetty for testing
 jettyRun{
-	contextPath = 'webapp'
+	contextPath = 'oms'
 	httpPort = 8080
 
 }
 
 jettyRunWar{
-	contextPath = 'webapp'
+	contextPath = 'oms'
 	httpPort = 8080
 
 }
@@ -89,7 +89,7 @@ eclipse {
     component {
       
       //define context path, default to project folder name
-      contextPath = 'webapp'
+      contextPath = 'oms'
       
     }
     

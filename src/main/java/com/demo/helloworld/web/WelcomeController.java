@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.script.ScriptException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,13 +21,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.demo.edit.DoEditEmployeeServlet;
 import com.demo.helloworld.service.HelloWorldService;
 import com.demo.service.EmployeeChange;
 import com.demo.service.EmployeeCreater;
 import com.demo.service.EmployeeUpdate;
-
+import com.demo.service.OrderCreater;
+import com.demo.service.OrderGetImpl;
+import com.demo.service.OrderManager;
+import com.demo.service.OrderSort;
+import com.demo.service.ProductChange;
+import com.demo.service.ProductCreater;
 import com.demo.service.EmployeeManager;
 import com.demo.service.EmployeeManagerImpl;
+import com.demo.service.ProductManager;
+import com.demo.service.ProductUpdate;
+import com.demo.edit.EditEmployeeServlet;
 
 @Controller
 public class WelcomeController extends HttpServlet {
@@ -117,7 +127,112 @@ public class WelcomeController extends HttpServlet {
 	 
 
 	    
+	    @Resource(name="productManagerImpl")
+	    ProductManager manager1;
 	 
+	    @RequestMapping(value = "/product",method = RequestMethod.GET)
+	    public String getAllProducts(Model model) throws SQLException
+	    
+	    
+	    {
+	    	
+	    logger.debug("product() is executed!");
+
+		
+	        model.addAttribute("products", manager1.getAllProducts());
+	        return "index";
+	    }
+	    
+	    @Resource(name="productChange")
+	    ProductChange changeP;
+	    
+	    @RequestMapping(value = "editProduct",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String getProduct (Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("changeP() is executed!");
+
+	        model.addAttribute("product", changeP.getProduct(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="productUpdate")
+	    ProductUpdate updateP;
+	    
+	    @RequestMapping(value = "doEditProduct",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String updateProduct(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("updateP() is executed!");
+
+	        model.addAttribute("NewProduct", updateP.updateProduct(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="orderManagerImpl")
+	    OrderManager manager2;
+	 
+	    @RequestMapping(value = "/order",method = RequestMethod.GET)
+	    public String getAllOrders(Model model) throws SQLException
+	    
+	    
+	    {
+	    	
+	    logger.debug("order() is executed!");
+
+	        model.addAttribute("orders", manager2.getAllOrders());
+	        return "index";
+	    }
+	    
+	    @Resource(name="orderGetImpl")
+	    OrderGetImpl getO;
+	    
+	    @RequestMapping(value = "createOrder",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String getOrder (Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("changeP() is executed!");
+
+	        model.addAttribute("order", getO.getOrder(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="orderCreaterImpl")
+	    OrderCreater creater;
+	 
+	    @RequestMapping(value = "doCreateOrder",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String insertOrder(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ScriptException
+	    
+	    
+	    {
+	    	
+	    logger.debug("orderInsert() is executed!");
+
+	        model.addAttribute("NewOrder", creater.insertOrder(request, response));
+	        return "index";
+	    }
+	    
+	    @Resource(name="productCreaterImpl")
+	    ProductCreater createrP;
+	 
+	    @RequestMapping(value = "doCreateProduct",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String insertProduct(Model model, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("productInsert() is executed!");
+
+	        model.addAttribute("NewProduct", createrP.insertProduct(request, response));
+	        return "index";
+	    }
+	    
 	    @Resource(name="employeeCreaterImpl")
 	    EmployeeCreater createrE;
 	    
@@ -133,7 +248,20 @@ public class WelcomeController extends HttpServlet {
 	        return "index";
 	    }
 	    
-	   
+	    @Resource(name="orderSort")
+	    OrderSort sort;
+	    
+	    @RequestMapping(value = "sort",method = {RequestMethod.POST, RequestMethod.GET})
+	    public String sort(Model model) throws SQLException, ServletException, IOException
+	    
+	    
+	    {
+	    	
+	    logger.debug("/sort() is executed!");
+
+	        model.addAttribute("sort", sort.sort());
+	        return "index";
+	    }
 	    
 	 
 	    
