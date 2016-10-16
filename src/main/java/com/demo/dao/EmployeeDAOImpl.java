@@ -26,7 +26,7 @@ import com.demo.model.ProductVO;
  
 @Repository
 public class EmployeeDAOImpl  extends HttpServlet implements EmployeeDAO{
-	
+	////////////
 	private final Logger logger = LoggerFactory.getLogger(EmployeeDAOImpl.class);
    
 	 public EmployeeDAOImpl() {
